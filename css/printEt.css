@@ -1,0 +1,30 @@
+BODY
+{
+	background: white;
+	color:black;
+    position: relative;
+    margin-left: 5mm;
+    margin-top: 3mm;
+    margin-right: 4mm;
+	margin-bottom:0mm;
+}
+
+.tabla-etiquetas{
+color:black;
+padding: 0px;
+border-collapse: collapse;
+}
+
+.tabla-etiquetas{
+padding: 5px;
+}
+
+
+.tabla-etiquetas tr td{
+padding-left: 3mm;
+}
+
+.tabla-etiqueta{
+width: 49mm;
+height: 17mm;
+}

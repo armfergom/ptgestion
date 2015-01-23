@@ -1,0 +1,215 @@
+BODY
+{
+	background: rgb(246,243,200);
+	color: rgb(158,157,139);
+    margin: auto; 
+    width: 711px; 
+    position: relative;
+}
+
+h3
+{
+	text-align:center;
+}
+
+h4
+{
+	text-align:center;
+}
+
+#posicionImagenH
+{
+	text-align:center;
+}
+
+#posicionImagenF
+{
+	text-align:center;
+}
+
+.tabla-centrada {
+   margin-left: auto;
+   margin-right: auto;
+   border:none;
+}
+
+.centrado {
+	text-align:center;
+}
+
+.imagenMediana{
+    width:300px;
+    height:300px;
+}
+
+
+
+.alineado-derecha {
+   text-align: right;
+}
+.alineado-izquerda {
+   text-align: left;
+}
+
+.alineado-centro {
+   text-align: center;
+}
+
+.boton{
+	background-color:#F1F1F1;
+	border:1px solid #999999;
+	color:#444444;
+	cursor:pointer;
+	/*margin-top:3%;*/
+}
+
+.botonMP{
+	background-color:#F1F1F1;
+	border:2px solid #999999;
+	color:#999999;
+	font-weight: bold;
+	cursor:pointer;
+	margin:3%;
+	width:150px;
+	height:100px;
+}
+
+.botonMPP{
+background-color:rgb(192,192,192);
+	border:2px solid #999999;
+	color:white;
+	font-weight: bold;
+	cursor:pointer;
+	margin:3%;
+	width:150px;
+	height:100px;
+}
+
+.erroresFormularios ul{
+    list-style-type:circle;
+}
+
+div.cnt_upload {
+   position:relative;
+   height: 27px;
+   width: 200px;
+}
+
+div.upload {
+   position: absolute;
+   left: 120px;
+   top: 0px;
+   width: 80px;
+   height: 24px;
+   overflow:hidden;
+   background: url(../Imagenes/btn_upload.png) left top no-repeat;
+   clip:rect(0px, 80px, 24px, 0px );
+}
+
+div.upload input {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    margin:0;
+    padding:0;
+    filter: Alpha(Opacity=0);
+    -moz-opacity: 0;
+    opacity: 0;
+   }
+
+input#upload_value {
+   position:absolute;
+   left: 0px;
+   top: 0px;
+   margin:0;
+   padding:0;
+   padding-top: 2px;
+   height: 20px;
+   width: 118px;
+   border:1px solid rgb(158,157,139);
+}
+
+a h3{
+color:#999999/*rgb(158,157,139)*/;
+}
+
+a h3:hover{
+color:rgb(128,128,128);
+}
+
+a h4{
+color:#999999/*rgb(158,157,139)*/;
+}
+
+a h4:hover{
+color:rgb(128,128,128);
+}
+
+a{
+text-decoration:none;
+font-weight:bold;
+color:rgb(158,157,139);
+}
+
+a:hover{
+color:red;
+}
+
+#aclaracion{
+text-align:center;
+}
+
+#aclaracionA{
+text-align:center;
+}
+
+#aclaracionP{
+text-align:center;
+}
+
+#aclaracionC{
+text-align:center;
+}
+
+#aclaracionT{
+text-align:center;
+}
+
+#aclaracionV{
+text-align:center;
+}
+.tabla-listado{
+    margin-left: auto;
+    margin-right: auto;
+	border: solid 1px;
+	text-align: center;
+}
+
+.fila-centrada{
+	text-align:center;
+}
+
+.tabla-listado td{
+    margin-left: auto;
+    margin-right: auto;
+	border: solid 1px rgb(158,157,139);
+	padding:5px 5px 5px 5px ;
+	color:black;
+}
+
+.cabeceraTabla{
+	background-color:rgb(247,184,115);
+}
+
+.filaImpar{
+	background-color:rgb(255,252,233);	
+}
+
+.filaPar{
+	background-color:rgb(255,231,161);
+	
+}
+
+.parrafoCentrado{
+	text-align:center;
+}

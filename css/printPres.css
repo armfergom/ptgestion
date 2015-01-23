@@ -1,0 +1,91 @@
+BODY
+{
+	background: white;
+	color:black;
+    position: relative;
+    margin-left: 0mm;
+    margin-top: 0mm;
+    margin-right: 0mm;
+	margin-bottom: 0mm;
+}
+
+.tabla-factura{
+	height:187mm;
+	width:210mm;
+	/*border:1px solid;*/
+}
+.tabla-factura td{
+	/*border:1px solid;*/
+}
+.tabla-factura-arriba{
+	height:69mm; 
+	width:210mm;
+	/*border:1px solid;*/
+}
+
+.tabla-imagen-cabecera{
+	height:45mm; /*era 36*/
+	width:210mm;
+		/*page-break-after:always;*/
+	/*border:1px solid;*/
+}
+
+.imagenFactura{
+	width:209mm;
+}
+
+.tabla-factura-arriba-electronica{
+	height:36mm;
+	width:210mm;
+	/*border:1px solid;*/
+}
+
+.tabla-factura-abajo{
+	height:18mm; 
+	width:210mm;
+		/*page-break-after:always;*/
+	/*border:1px solid;*/
+}
+.alineado-derecha {
+   text-align: right;
+}
+.descripcion{
+	width:48mm;
+}
+.alturaNormal td{
+	height:16mm;
+}
+.margen-superior{
+	height:45mm;  /*era 39*/
+}
+.margen-superior-esp{
+	height:18mm; /*Era 33*/
+}
+.margen-lateral{
+	width:20mm;
+}
+.datosCliente1{
+	height:10mm;
+}
+.datosCliente2{
+	height:10mm;
+}
+.datosCliente3{
+	height:10mm;
+}
+.saltoPagina{
+	page-break-after:always;
+}
+
+.imagenLista{
+    width:20mm;
+    height:20mm;
+}
+
+.comentarioFacRes{
+	width:135mm;
+}
+
+.parrafoCentrado{
+	text-align:center;
+}

@@ -1,0 +1,8 @@
+[DEFAULT]
+BASEURL=http://localhost/ptgestion/
+[InternetShortcut]
+URL=http://localhost/ptgestion/
+IconFile=C:\Windows\system32\SHELL32.dll
+HotKey=0
+IconIndex=174
+IDList=
