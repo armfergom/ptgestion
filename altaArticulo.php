@@ -5,7 +5,7 @@
    
 	//si llega información del formulario, la tratamos
 	if (isset($_REQUEST['enviar']))
-	{
+	{ 
 		//obtenemos los datos del formulario
 		$referencia = $_REQUEST['referencia'];
 		$nombre = $_REQUEST['nombre'];
