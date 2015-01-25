@@ -145,17 +145,35 @@
 		$iva = IVA($fecha);
 		
 		if ($iva == 1.16)
-			$c="Cuota 16%";	
+			$c="I.V.A 16%";	
 
 		if ($iva == 1.18)
-			$c="Cuota 18%";	
+			$c="I.V.A 18%";	
 			
 		if ($iva == 1.21)
-			$c="Cuota 21%";	
+			$c="I.V.A 21%";	
 				
 		return $c;
 	}
 	
+	function cuotaSumaIVA ($fecha) {
+		$mes = substr($fecha, 5, 2);
+		$anyo = substr($fecha, 0, 4);
+		
+		$iva = IVA($fecha);
+		
+		if ($iva == 1.16)
+			$c="SUMA I.V.A 16%";	
+
+		if ($iva == 1.18)
+			$c="SUMA I.V.A 18%";	
+			
+		if ($iva == 1.21)
+			$c="SUMA I.V.A 21%";	
+				
+		return $c;
+	}
+
 	function precioIVA ($p, $fecha){
 		
 		$mes = substr($fecha, 5, 2);
@@ -605,7 +623,7 @@ function redondea ($num){
 			$aum=true;
 		}
 		
-		if($aum ==true)
+		if($aum==true)
 			$ret=$ce+1;
 		else{
 			$ret=$ce.'.'.$cf;
