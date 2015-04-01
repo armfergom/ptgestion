@@ -94,10 +94,10 @@
 		$baseImponible=calculaBaseImponible($venta,'venta');
 		
 		if ($descuento!=0){
-			echo '<tr class="alturaNormal"><td class="margen-lateral"></td><td class="comentarioFacRes">Suma total base imponible<br />'.cuotaSumaIVA($fecha).'<br /><b>Descuento</b><br /><b>TOTAL I.V.A INCLUIDO</b></td><td class="alineado-derecha">'.formatoDinero($baseImponible).' €<br/>'. formatoDinero(impuestoIVA($baseImponible, $fecha)) .' €<br/>'.$descuento.' %<br />'.formatoDinero(precioVenta($venta)) .' €</td><td class="margen-lateral"></td></tr>';				
+			echo '<tr class="alturaNormal"><td class="margen-lateral"></td><td class="comentarioFacRes">SUMA TOTAL BASE IMPONIBLE<br />'.cuotaSumaIVA($fecha).'<br /><b>Descuento</b><br /><b>TOTAL I.V.A INCLUIDO</b></td><td class="alineado-derecha">'.formatoDinero($baseImponible).' €<br/>'. formatoDinero(impuestoIVA($baseImponible, $fecha)) .' €<br/>'.$descuento.' %<br />'.formatoDinero(precioVenta($venta)) .' €</td><td class="margen-lateral"></td></tr>';				
 		}
 		else{
-			echo '<tr class="alturaNormal"><td class="margen-lateral"></td><td class="comentarioFacRes">Suma total base imponible<br />'.cuotaSumaIVA($fecha).'<br /><b>TOTAL I.V.A INCLUIDO</b></td><td class="alineado-derecha">'.formatoDinero($baseImponible).' €<br/>'. formatoDinero(impuestoIVA($baseImponible, $fecha)) .' €<br/>'.formatoDinero(precioVenta($venta)).' €</td><td class="margen-lateral"></td></tr>';				
+			echo '<tr class="alturaNormal"><td class="margen-lateral"></td><td class="comentarioFacRes">SUMA TOTAL BASE IMPONIBLE<br />'.cuotaSumaIVA($fecha).'<br /><b>TOTAL I.V.A INCLUIDO</b></td><td class="alineado-derecha">'.formatoDinero($baseImponible).' €<br/>'. formatoDinero(impuestoIVA($baseImponible, $fecha)) .' €<br/>'.formatoDinero(precioVenta($venta)).' €</td><td class="margen-lateral"></td></tr>';				
 		}
 			
 		
@@ -175,10 +175,10 @@
 		$baseImponible=calculaBaseImponible($presupuesto,'presupuesto');
 		
 		if ($descuento!=0){
-			echo '<tr class="alturaNormal"><td class="margen-lateral"></td><td class="comentarioFacRes">Suma total base imponible<br />'.cuotaSumaIVA($fecha).'<br /><b>Descuento</b><br /><b>TOTAL I.V.A INCLUIDO</b></td><td class="alineado-derecha">'.formatoDinero($baseImponible).' €<br/>'. formatoDinero(impuestoIVA($baseImponible, $fecha)) .' €<br/>'.$descuento.' %<br />'.formatoDinero(precioPresupuesto($presupuesto)) .' €</td><td class="margen-lateral"></td></tr>';				
+			echo '<tr class="alturaNormal"><td class="margen-lateral"></td><td class="comentarioFacRes">SUMA TOTAL BASE IMPONIBLE<br />'.cuotaSumaIVA($fecha).'<br /><b>Descuento</b><br /><b>TOTAL I.V.A INCLUIDO</b></td><td class="alineado-derecha">'.formatoDinero($baseImponible).' €<br/>'. formatoDinero(impuestoIVA($baseImponible, $fecha)) .' €<br/>'.$descuento.' %<br />'.formatoDinero(precioPresupuesto($presupuesto)) .' €</td><td class="margen-lateral"></td></tr>';				
 		}
 		else{
-			echo '<tr class="alturaNormal"><td class="margen-lateral"></td><td class="comentarioFacRes">Suma total base imponible<br />'.cuotaSumaIVA($fecha).'<br /><b>TOTAL I.V.A INCLUIDO</b></td><td class="alineado-derecha">'.formatoDinero($baseImponible).' €<br/>'. formatoDinero(impuestoIVA($baseImponible, $fecha)) .' €<br/>'.formatoDinero(precioPresupuesto($presupuesto)).' €</td><td class="margen-lateral"></td></tr>';				
+			echo '<tr class="alturaNormal"><td class="margen-lateral"></td><td class="comentarioFacRes">SUMA TOTAL BASE IMPONIBLE<br />'.cuotaSumaIVA($fecha).'<br /><b>TOTAL I.V.A INCLUIDO</b></td><td class="alineado-derecha">'.formatoDinero($baseImponible).' €<br/>'. formatoDinero(impuestoIVA($baseImponible, $fecha)) .' €<br/>'.formatoDinero(precioPresupuesto($presupuesto)).' €</td><td class="margen-lateral"></td></tr>';				
 		}
 			
 		
