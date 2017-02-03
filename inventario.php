@@ -23,7 +23,7 @@
 		}
 		
 		foreach ($stmt as $row){
-            if (!esIntangible($row['Referencia'])){
+            if (!esIntangible($row['Referencia']) && $row['Unidades'] > 0){
                 echo '<tr><td class="celdaRef">'.$row['Referencia'].'</td><td class="celdaNombre">'.$row['Nombre'].'</td><td class="celdaPrecio">'.precioIVA($row['Precio'],null).'€</td><td class="celdaUni">'.$row['Unidades'].'</td></tr>';
 				$totalProductos = $totalProductos + (precioIVA($row['Precio'],null)*$row['Unidades']);
 			}
