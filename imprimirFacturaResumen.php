@@ -8,7 +8,7 @@
 	if (isset($_REQUEST['venta']))
 	{	
 		$venta=$_REQUEST['venta'];
-		
+		$electronica=$_REQUEST['electronica'];
 		
 		$query2="SELECT * FROM venta WHERE IdVenta = $venta";
 		$stmt = $dbh -> query($query);
@@ -82,7 +82,13 @@
 				break;
 		}
 
-		echo '<table class="tabla-factura-arriba">';
+		if (isset($_REQUEST['electronica'])) {
+			echo '<table class="tabla-imagen-cabecera"><tr><td><img class ="imagenFactura" src="./Imagenes/cabeceraFacturaElectronica.png" alt="La imagen no se ha podido cargar"></img></td><tr></table>';
+			echo '<table class="tabla-factura-arriba-electronica">';
+		} else {
+			echo '<table class="tabla-factura-arriba">';
+		}
+
 		echo '	<tr class="margen-superior"></tr>
 			<tr class="datosCliente1"><td class="margen-lateral"></td><td class="ancho2">'.$cadenaTituloEtc.'</td><td class="alineado-derecha">FRA '.$numFac.'</td><td class="margen-lateral"></td></tr>
 			<tr class="datosCliente2"><td class="margen-lateral"></td><td colspan="2">'.$row3['Direccion'].' </td><td class="margen-lateral"></td></tr>
@@ -100,7 +106,14 @@
 			echo '<tr class="alturaNormal"><td class="margen-lateral"></td><td class="comentarioFacRes">SUMA TOTAL BASE IMPONIBLE<br />'.cuotaSumaIVA($fecha).'<br /><b>TOTAL I.V.A INCLUIDO</b></td><td class="alineado-derecha">'.formatoDinero($baseImponible).' €<br/>'. formatoDinero(impuestoIVA($baseImponible, $fecha)) .' €<br/>'.formatoDinero(precioVenta($venta)).' €</td><td class="margen-lateral"></td></tr>';				
 		}
 			
-		
+		if (isset($_REQUEST['electronica'])) {
+			echo '<tr class="alturaNormal">
+					<td class="margen-lateral"></td>
+					<td class="comentarioFacRes"><strong>DATOS BANCARIOS:</strong> ES27 0019 0050 09 4010096084</td>
+					';
+			$lineas++;
+		}	
+
 		while ($lineas <9){
 			echo '<tr class="alturaNormal"><td class="margen-lateral"></td><td class="comentarioFacRes"></td><td class="alineado-derecha"></td><td class="margen-lateral"></td></tr>';
 			$lineas++;
@@ -163,7 +176,13 @@
 				break;
 		}
 
-		echo '<table class="tabla-factura-arriba">';
+		if (isset($_REQUEST['electronica'])) {
+			echo '<table class="tabla-imagen-cabecera"><tr><td><img class ="imagenFactura" src="./Imagenes/cabeceraFacturaElectronica.png" alt="La imagen no se ha podido cargar"></img></td><tr></table>';
+			echo '<table class="tabla-factura-arriba-electronica">';
+		} else {
+			echo '<table class="tabla-factura-arriba">';
+		}
+
 		echo '	<tr class="margen-superior"></tr>
 			<tr class="datosCliente1"><td class="margen-lateral"></td><td class="ancho2">'.$cadenaTituloEtc.'</td><td class="alineado-derecha">FRA '.$numFac.'</td><td class="margen-lateral"></td></tr>
 			<tr class="datosCliente2"><td class="margen-lateral"></td><td colspan="2">'.$row3['Direccion'].' </td><td class="margen-lateral"></td></tr>
@@ -180,12 +199,20 @@
 		else{
 			echo '<tr class="alturaNormal"><td class="margen-lateral"></td><td class="comentarioFacRes">SUMA TOTAL BASE IMPONIBLE<br />'.cuotaSumaIVA($fecha).'<br /><b>TOTAL I.V.A INCLUIDO</b></td><td class="alineado-derecha">'.formatoDinero($baseImponible).' €<br/>'. formatoDinero(impuestoIVA($baseImponible, $fecha)) .' €<br/>'.formatoDinero(precioPresupuesto($presupuesto)).' €</td><td class="margen-lateral"></td></tr>';				
 		}
-			
 		
+		if (isset($$_REQUEST['electronica'])) {
+			echo '<tr class="alturaNormal">
+					<td class="margen-lateral"></td>
+					<td class="comentarioFacRes"><strong>DATOS BANCARIOS:</strong> ES27 0019 0050 09 4010096084</td>
+					';
+			$lineas++;
+		}	
+
 		while ($lineas <9){
 			echo '<tr class="alturaNormal"><td class="margen-lateral"></td><td class="comentarioFacRes"></td><td class="alineado-derecha"></td><td class="margen-lateral"></td></tr>';
 			$lineas++;
 		}
+
 		echo '</table>';
 		echo '<table class="tabla-factura-abajo"><tr class="margen-superior-esp"><td class="margen-lateral"></td><td><b>Sevilla</b>, '.fechaFormatoLargo($row['FechaVenta']).'</td><td class="margen-lateral"></td></tr></table>';
 	}

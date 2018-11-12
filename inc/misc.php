@@ -665,22 +665,25 @@ function calculaNumeroFactura ($IdVenta, $fecha){
 
 			$ultimaVentaAnoAnterior = $row['IdVenta'];
 
-			$query = "SELECT IdFactura FROM factura WHERE IdVenta = $ultimaVentaAnoAnterior";
-			$stmt = $dbh -> query($query);
-			$row = $stmt->fetch();
+			if (isset($ultimaVentaAnoAnterior)) {
+				$query = "SELECT IdFactura FROM factura WHERE IdVenta = $ultimaVentaAnoAnterior";
+				$stmt = $dbh -> query($query);
+				$row = $stmt->fetch();
 
-			$ultimaFactura = $row['IdFactura'];
+				$ultimaFactura = $row['IdFactura'];
 
-			$numFactura = $IdFactura - $ultimaFactura;
-			
-			$precioVenta=precioVenta($IdVenta);
-			
-			//Cálculo del número de factura
-			if ($precioVenta<0)
-			{
-				$numFactura = 'A'.$numFactura;
+				$numFactura = $IdFactura - $ultimaFactura;
+				
+				$precioVenta=precioVenta($IdVenta);
+				
+				//Cálculo del número de factura
+				if ($precioVenta<0)
+				{
+					$numFactura = 'A'.$numFactura;
+				}
+			} else {
+				$numFactura = 1;
 			}
-
 			
 			return $numFactura.'/'.$anoVenta;
 		}
