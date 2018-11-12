@@ -8,7 +8,6 @@
 	if (isset($_REQUEST['venta']))
 	{	
 		$venta=$_REQUEST['venta'];
-		$electronica=$_REQUEST['electronica'];
 		
 		$query2="SELECT * FROM venta WHERE IdVenta = $venta";
 		$stmt = $dbh -> query($query);
