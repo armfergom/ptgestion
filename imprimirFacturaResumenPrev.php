@@ -13,7 +13,8 @@
 		  <p class="centrado">
 		  <label for="comentario"><b>Comentario:</b></label><br />
 		  <textarea name="comentario" rows="5" cols="40"></textarea><br />
-		  <input name="sigPaso" type="submit" value="Generar" class="boton" />
+		  <input name="electronica" type="submit" value="Electronica" class="boton"/>
+		  <input name="normal" type="submit" value="Normal" class="boton"/>
 		  </p>
 		  </form>';
 	  

@@ -105,7 +105,7 @@
 						<tr class="datosCliente3"><td class="margen-lateral"></td><td colspan="2">'.$row3['Localidad'].' '.$CP.'&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp '.$NIF.'</td><td class="margen-lateral"></td></tr></table>
 						<table class="tabla-factura">';
 				}
-				else{
+				else {
 					echo '<table class="tabla-imagen-cabecera"><tr><td><img class ="imagenFactura" src="./Imagenes/cabeceraFacturaElectronica.png" alt="La imagen no se ha podido cargar"></img></td><tr></table>';
 					echo '<table class="tabla-factura-arriba-electronica">';
 					echo '<tr class="datosCliente1"><td class="margen-lateral"></td><td class="ancho2">'.$cadenaTituloEtc.'</td><td class="alineado-derecha"> FRA '.$numFac.'</td><td class="margen-lateral"></td></tr>
