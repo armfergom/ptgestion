@@ -1,7 +1,6 @@
 # Instalación
 
 - Instalar la version 1.6.8 de XAMPP para Windows
-- Marcar las opciones `Install Apache as a Service` y `Install MySQL as a service` durante la instalación
 - Descarar el codigo del programa de https://github.com/armfergom/ptgestion
 - Copiar la carpeta `ptgestion` con el código del programa en C://xampp/htdocs
 - En este punto y si aun no tenemos la base de datos creada, si accedemos a http://localhost/ptgestion podremos acceder al programa pero veremos un error que nos dice que no podemos acceder a la base de datos. 
@@ -20,12 +19,19 @@ A la hora de instalar una base de datos, tenemos dos opciones. O instalarla limp
 
 ## Instalar una base de datos desde una copia de seguridad
 
-- Acceder a http://localhost/phpmyadmin
-- Hacer click en la base de datos `ptgestion` en el menu izquierdo de la pantalla
+- Crear la base de datos `ptgestion` manualmente
+- Hacer click en la base de datos recien creada
 - En las pestañas de la parte supuerior de la pantalla, hacer click en `Importar`
-- Hacer click en `Seleccionar archivo`
-- Seleccionar el archivo `.sql` que contiene la copia de seguridad
-- Hacer click en `Continuar`
+- Seleccionar el archivo que contiene la copia de seguridad y hacer click en `Continuar`
+
+### Problemas con imports de ficheros grandes
+
+Es posible que si la copia de seguridad es demasiado grande, tengamos problemas a la hora de realizar la importación. Para ello solucionarlo deberemos:
+
+- Abrir el archivo `C://xampp/apache/bin/php.ini`
+- Chequear el valor del parametro `upload_max_filesize` y `post_max_size` y aumentarlo si es necesario
+- Reiniciar el ordenador
+- Ir a http://localhost/phpinfo y chequear que el valor de `upload_max_filesize` es el correcto 
 
 # Crear una copia de seguridad de la base de datos:
 
