@@ -45,7 +45,9 @@
 					
 				echo '</table>';
                 
-				echo '<p class="parrafoCentrado"><a href="imprimirPresupuesto.php?presupuesto='.$presupuesto.'" target="_new"><input name="imprimirPresupuesto" type="button" value="Imprimir presupuesto" class="boton" /></a></p>';
+				echo '<p class="parrafoCentrado"><a href="imprimirPresupuesto.php?presupuesto='.$presupuesto.'&electronica=no" target="_new"><input name="imprimirPresupuesto" type="button" value="Imprimir presupuesto" class="boton" /></a></p>';
+
+				echo '<p class="parrafoCentrado"><a href="imprimirPresupuesto.php?presupuesto='.$presupuesto.'&electronica=si" target="_new"><input name="imprimirPresupuesto" type="button" value="Imprimir presupuesto electronico" class="boton" /></a></p>';
 
 
 				if ($row['Observaciones'] != null)

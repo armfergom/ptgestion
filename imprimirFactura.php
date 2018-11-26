@@ -214,10 +214,20 @@
 				}
 				$lineas=1;
 		}
+
+		if ($electronica == 'si') {
+			echo '<tr class="alturaNormal">
+					<td class="margen-lateral"></td>
+					<td colspan="3" class="comentarioFacRes"><strong>DATOS BANCARIOS:</strong> ES27 0019 0050 09 4010096084</td>
+					';
+			$lineas++;
+		}	
+		
 		while ($lineas <9){
 			echo '<tr class="alturaNormal"><td class="margen-lateral"></td><td></td><td class="descripcion"></td><td></td><td></td><td class="alineado-derecha"></td><td class="margen-lateral"></td></tr>';
 			$lineas++;
 		}
+
 		echo '</table>';
 		echo '<table class="tabla-factura-abajo"><tr class="margen-superior-esp"><td class="margen-lateral"></td><td><b>Sevilla</b>, '.fechaFormatoLargo($row2['FechaVenta']).'</td><td class="margen-lateral"></td></tr></table>';
 	} 

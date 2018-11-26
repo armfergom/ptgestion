@@ -108,7 +108,7 @@
 		if (isset($_REQUEST['electronica'])) {
 			echo '<tr class="alturaNormal">
 					<td class="margen-lateral"></td>
-					<td class="comentarioFacRes"><strong>DATOS BANCARIOS:</strong> ES27 0019 0050 09 4010096084</td>
+					<td colspan="2" class="comentarioFacRes"><strong>DATOS BANCARIOS:</strong> ES27 0019 0050 09 4010096084</td>
 					';
 			$lineas++;
 		}	
@@ -199,10 +199,10 @@
 			echo '<tr class="alturaNormal"><td class="margen-lateral"></td><td class="comentarioFacRes">SUMA TOTAL BASE IMPONIBLE<br />'.cuotaSumaIVA($fecha).'<br /><b>TOTAL I.V.A INCLUIDO</b></td><td class="alineado-derecha">'.formatoDinero($baseImponible).' €<br/>'. formatoDinero(impuestoIVA($baseImponible, $fecha)) .' €<br/>'.formatoDinero(precioPresupuesto($presupuesto)).' €</td><td class="margen-lateral"></td></tr>';				
 		}
 		
-		if (isset($$_REQUEST['electronica'])) {
+		if (isset($_REQUEST['electronica'])) {
 			echo '<tr class="alturaNormal">
 					<td class="margen-lateral"></td>
-					<td class="comentarioFacRes"><strong>DATOS BANCARIOS:</strong> ES27 0019 0050 09 4010096084</td>
+					<td colspan="2" class="comentarioFacRes"><strong>DATOS BANCARIOS:</strong> ES27 0019 0050 09 4010096084</td>
 					';
 			$lineas++;
 		}	

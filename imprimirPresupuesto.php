@@ -39,10 +39,11 @@
 				break;
 		}
 		
+		$electronica = $_REQUEST['electronica'];
+
 		//Si vamos a imprimir una factura de un presupuesto
         if (isset($_REQUEST['facturaPresupuesto'])){
             $facturaPresupuesto=true;
-            $electronica = $_REQUEST['electronica'];
             $IdVenta=$row2['IdVenta'];
 			
 			$queryVent="SELECT * FROM venta WHERE IdVenta = $IdVenta";
@@ -117,25 +118,23 @@
         
 			//Si es una nueva página tendremos que mostrar otra vez el encabezado.
 			if ($nuevaPag){
+			    if ($electronica == 'no'){
+           			echo '<table class="tabla-factura-arriba">
+					<tr class="margen-superior"></tr>';
+           		}
+           		else{
+           			echo '<table class="tabla-imagen-cabecera"><tr><td><img class ="imagenFactura" src="./Imagenes/cabeceraFacturaElectronica.png" alt="La imagen no se ha podido cargar"></img></td><tr></table>';
+					echo '<table class="tabla-factura-arriba-electronica">';
+           		}
+
 				//Cabecera. Distinta si es una factura y si es un presupuesto.
-               	if ($facturaPresupuesto){
-               		if ($electronica == 'no'){
-               			echo '<table class="tabla-factura-arriba">
-						<tr class="margen-superior"></tr>';
-               		}
-               		else{
-               			echo '<table class="tabla-imagen-cabecera"><tr><td><img class ="imagenFactura" src="./Imagenes/cabeceraFacturaElectronica.png" alt="La imagen no se ha podido cargar"></img></td><tr></table>';
-						echo '<table class="tabla-factura-arriba-electronica">';
-               		}
-                	
+               	if ($facturaPresupuesto){                	
                    	echo ' 	<tr class="datosCliente1"><td class="margen-lateral"></td><td class="ancho2">'.$cadenaTituloEtc.'</td><td class="alineado-derecha"> FRA '.$IdFactura.'</td><td class="margen-lateral"></td></tr>';
 					echo '<tr class="datosCliente2"><td class="margen-lateral"></td><td colspan="2">'.$row3['Direccion'].' </td><td class="margen-lateral"></td></tr>
 					<tr class="datosCliente3"><td class="margen-lateral"></td><td colspan="2">'.$row3['Localidad'].' '.$CP.'&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp '.$NIF.'</td><td class="margen-lateral"></td></tr></table>
 					<table class="tabla-factura">';
 				}
 				else{
-					echo '<table class="tabla-factura-arriba">';
-					echo '	<tr class="margen-superior"></tr>';
                    	echo ' 	<tr class="datosCliente1"><td class="margen-lateral"></td><td class="ancho2">'.$cadenaTituloEtc.'</td><td class="alineado-derecha"> P-'.$row2['IdPresupuesto'].'</td><td class="margen-lateral"></td></tr>';
 					echo '<tr class="datosCliente2"><td class="margen-lateral"></td><td colspan="2"></td><td class="margen-lateral"></td></tr>
 					<tr class="datosCliente3"><td class="margen-lateral"></td><td colspan="2"></td><td class="margen-lateral"></td></tr></table>
@@ -317,25 +316,22 @@
 		
 		//Si queda un ultimo articulo por escribir...
 			if ($nuevaPag){
+			    if ($electronica == 'no'){
+           			echo '<table class="tabla-factura-arriba">
+					<tr class="margen-superior"></tr>';
+           		}
+           		else{
+           			echo '<table class="tabla-imagen-cabecera"><tr><td><img class ="imagenFactura" src="./Imagenes/cabeceraFacturaElectronica.png" alt="La imagen no se ha podido cargar"></img></td><tr></table>';
+					echo '<table class="tabla-factura-arriba-electronica">';
+           		}
 				//Cabecera. Distinta si es una factura y si es un presupuesto.
                	if ($facturaPresupuesto){
-               		if ($electronica == 'no'){
-               			echo '<table class="tabla-factura-arriba">
-						<tr class="margen-superior"></tr>';
-               		}
-               		else{
-               			echo '<table class="tabla-imagen-cabecera"><tr><td><img class ="imagenFactura" src="./Imagenes/cabeceraFacturaElectronica.png" alt="La imagen no se ha podido cargar"></img></td><tr></table>';
-						echo '<table class="tabla-factura-arriba-electronica">';
-               		}
-                	
                    	echo ' 	<tr class="datosCliente1"><td class="margen-lateral"></td><td class="ancho2">'.$cadenaTituloEtc.'</td><td class="alineado-derecha"> FRA '.$IdFactura.'</td><td class="margen-lateral"></td></tr>';
 					echo '<tr class="datosCliente2"><td class="margen-lateral"></td><td colspan="2">'.$row3['Direccion'].' </td><td class="margen-lateral"></td></tr>
 					<tr class="datosCliente3"><td class="margen-lateral"></td><td colspan="2">'.$row3['Localidad'].' '.$CP.'&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp '.$NIF.'</td><td class="margen-lateral"></td></tr></table>
 					<table class="tabla-factura">';
 				}
 				else{
-					echo '<table class="tabla-factura-arriba">';
-					echo '	<tr class="margen-superior"></tr>';
                    	echo ' 	<tr class="datosCliente1"><td class="margen-lateral"></td><td class="ancho2">'.$cadenaTituloEtc.'</td><td class="alineado-derecha"> P-'.$row2['IdPresupuesto'].'</td><td class="margen-lateral"></td></tr>';
 					echo '<tr class="datosCliente2"><td class="margen-lateral"></td><td colspan="2"></td><td class="margen-lateral"></td></tr>
 					<tr class="datosCliente3"><td class="margen-lateral"></td><td colspan="2"></td><td class="margen-lateral"></td></tr></table>
@@ -401,25 +397,22 @@
                     $totalCapitulo=0;
                 }
 				else{
+					if ($electronica == 'no'){
+           				echo '<table class="tabla-factura-arriba">
+						<tr class="margen-superior"></tr>';
+           			}
+           			else{
+           				echo '<table class="tabla-imagen-cabecera"><tr><td><img class ="imagenFactura" src="./Imagenes/cabeceraFacturaElectronica.png" alt="La imagen no se ha podido cargar"></img></td><tr></table>';
+						echo '<table class="tabla-factura-arriba-electronica">';
+          	 		}
 					//Cabecera. Distinta si es una factura y si es un presupuesto.
                		if ($facturaPresupuesto){
-               			if ($electronica == 'no'){
-               				echo '<table class="tabla-factura-arriba">
-							<tr class="margen-superior"></tr>';
-               			}
-               			else{
-               				echo '<table class="tabla-imagen-cabecera"><tr><td><img class ="imagenFactura" src="./Imagenes/cabeceraFacturaElectronica.png" alt="La imagen no se ha podido cargar"></img></td><tr></table>';
-							echo '<table class="tabla-factura-arriba-electronica">';
-              	 		}
-                	
                	    	echo ' 	<tr class="datosCliente1"><td class="margen-lateral"></td><td class="ancho2">'.$cadenaTituloEtc.'</td><td class="alineado-derecha"> FRA '.$IdFactura.'</td><td class="margen-lateral"></td></tr>';
 						echo '<tr class="datosCliente2"><td class="margen-lateral"></td><td colspan="2">'.$row3['Direccion'].' </td><td class="margen-lateral"></td></tr>
 						<tr class="datosCliente3"><td class="margen-lateral"></td><td colspan="2">'.$row3['Localidad'].' '.$CP.'&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp '.$NIF.'</td><td class="margen-lateral"></td></tr></table>
 						<table class="tabla-factura">';
 					}
 					else{
-						echo '<table class="tabla-factura-arriba">';
-						echo '	<tr class="margen-superior"></tr>';
                	    	echo ' 	<tr class="datosCliente1"><td class="margen-lateral"></td><td class="ancho2">'.$cadenaTituloEtc.'</td><td class="alineado-derecha"> P-'.$row2['IdPresupuesto'].'</td><td class="margen-lateral"></td></tr>';
 						echo '<tr class="datosCliente2"><td class="margen-lateral"></td><td colspan="2"></td><td class="margen-lateral"></td></tr>
 						<tr class="datosCliente3"><td class="margen-lateral"></td><td colspan="2"></td><td class="margen-lateral"></td></tr></table>
@@ -486,25 +479,22 @@
 
 		}
 		else{
+		    if ($electronica == 'no'){
+           		echo '<table class="tabla-factura-arriba">
+				<tr class="margen-superior"></tr>';
+           	}
+           	else{
+           		echo '<table class="tabla-imagen-cabecera"><tr><td><img class ="imagenFactura" src="./Imagenes/cabeceraFacturaElectronica.png" alt="La imagen no se ha podido cargar"></img></td><tr></table>';
+				echo '<table class="tabla-factura-arriba-electronica">';
+           	}
 			//Cabecera. Distinta si es una factura y si es un presupuesto.
             if ($facturaPresupuesto){
-              	if ($electronica == 'no'){
-               		echo '<table class="tabla-factura-arriba">
-					<tr class="margen-superior"></tr>';
-               	}
-               	else{
-               		echo '<table class="tabla-imagen-cabecera"><tr><td><img class ="imagenFactura" src="./Imagenes/cabeceraFacturaElectronica.png" alt="La imagen no se ha podido cargar"></img></td><tr></table>';
-					echo '<table class="tabla-factura-arriba-electronica">';
-               	}
-                	
                 echo ' 	<tr class="datosCliente1"><td class="margen-lateral"></td><td class="ancho2">'.$cadenaTituloEtc.'</td><td class="alineado-derecha"> FRA '.$IdFactura.'</td><td class="margen-lateral"></td></tr>';
 				echo '<tr class="datosCliente2"><td class="margen-lateral"></td><td colspan="2">'.$row3['Direccion'].' </td><td class="margen-lateral"></td></tr>
 				<tr class="datosCliente3"><td class="margen-lateral"></td><td colspan="2">'.$row3['Localidad'].' '.$CP.'&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp '.$NIF.'</td><td class="margen-lateral"></td></tr></table>
 				<table class="tabla-factura">';
 			}
 			else{
-				echo '<table class="tabla-factura-arriba">';
-				echo '	<tr class="margen-superior"></tr>';
               	echo ' 	<tr class="datosCliente1"><td class="margen-lateral"></td><td class="ancho2">'.$cadenaTituloEtc.'</td><td class="alineado-derecha"> P-'.$row2['IdPresupuesto'].'</td><td class="margen-lateral"></td></tr>';
 				echo '<tr class="datosCliente2"><td class="margen-lateral"></td><td colspan="2"></td><td class="margen-lateral"></td></tr>
 				<tr class="datosCliente3"><td class="margen-lateral"></td><td colspan="2"></td><td class="margen-lateral"></td></tr></table>
