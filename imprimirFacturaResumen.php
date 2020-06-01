@@ -108,7 +108,7 @@
 		if (isset($_REQUEST['electronica'])) {
 			echo '<tr class="alturaNormal">
 					<td class="margen-lateral"></td>
-					<td colspan="2" class="comentarioFacRes"><strong>DATOS BANCARIOS:</strong> ES27 0019 0050 09 4010096084</td>
+					<td colspan="2" class="comentarioFacRes"><strong>DATOS BANCARIOS:</strong> ES84 0081 0225 1200 0297 3808</td>
 					';
 			$lineas++;
 		}	
@@ -202,7 +202,7 @@
 		if (isset($_REQUEST['electronica'])) {
 			echo '<tr class="alturaNormal">
 					<td class="margen-lateral"></td>
-					<td colspan="2" class="comentarioFacRes"><strong>DATOS BANCARIOS:</strong> ES27 0019 0050 09 4010096084</td>
+					<td colspan="2" class="comentarioFacRes"><strong>DATOS BANCARIOS:</strong> ES84 0081 0225 1200 0297 3808</td>
 					';
 			$lineas++;
 		}	
