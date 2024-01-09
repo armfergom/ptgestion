@@ -9,7 +9,7 @@
 		
 		try 
 		{
-			//debemos mirar en la tabla lineaCompra y multiplicar las unidades de cada artículo por su coste
+			//debemos mirar en la tabla lineaCompra y multiplicar las unidades de cada artï¿½culo por su coste
 			$coste = 0;
 			$query = "SELECT Referencia, Unidades, Coste FROM lineacompra WHERE IdCompra = $compra";
 			$stmt = $dbh->query($query);
@@ -37,7 +37,7 @@
 		
 		try 
 		{
-			//debemos mirar en la tabla lineaVenta y multiplicar las unidades de cada artículo por su precio
+			//debemos mirar en la tabla lineaVenta y multiplicar las unidades de cada artï¿½culo por su precio
 			$baseImp = 0;
 			$query = "SELECT Unidades, Precio, Descuento FROM lineaventa WHERE IdVenta = $venta";
 			$stmt = $dbh->query($query);
@@ -74,7 +74,7 @@
 		
 		try 
 		{
-			//debemos mirar en la tabla lineapresupuesto y multiplicar las unidades de cada artículo por su precio
+			//debemos mirar en la tabla lineapresupuesto y multiplicar las unidades de cada artï¿½culo por su precio
 			$preciotOTAL = 0;
 			$query = "SELECT Unidades, Precio, Descuento FROM lineapresupuesto WHERE IdPresupuesto = $presupuesto";
 			$stmt = $dbh->query($query);
@@ -108,7 +108,7 @@
 		
 		try 
 		{
-			//debemos mirar en la tabla lineapresupuesto y multiplicar las unidades de cada artículo por su precio
+			//debemos mirar en la tabla lineapresupuesto y multiplicar las unidades de cada artï¿½culo por su precio
 			$precio = 0;
 			$query = "SELECT Unidades, Precio FROM linealistaboda WHERE IdListaBoda = $listaBoda";
 			$stmt = $dbh->query($query);
@@ -288,13 +288,13 @@
 	{
 		global $dbh;
 	
-		echo '<a href="menuArticulos.php"><h4>Menú artículos</h4></a><h4>Listado de artículos</h4><table class="tabla-listado">';
+		echo '<a href="menuArticulos.php"><h4>Menï¿½ artï¿½culos</h4></a><h4>Listado de artï¿½culos</h4><table class="tabla-listado">';
 		
 		//cabecera de la tabla
 		echo '<tr class="cabeceraTabla"><td><b>Referencia</b></td><td><b>Nombre</b></td><td><b>Precio (Con IVA)</b></td><td><b>Coste</b></td><td><b>Proveedor</b></td><td><b>Unidades</b></td></tr>';
 		
 		$i=1;
-		//para cada artículo añadimos sus propiedades
+		//para cada artï¿½culo aï¿½adimos sus propiedades
 		foreach ($stmt as $row)
 		{
 			if ($i%2==0)
@@ -339,13 +339,13 @@
 
 	function listaProv($stmt)
 	{
-		echo '<a href="menuProveedores.php"><h4>Menú proveedores</h4></a><h4>Listado de proveedores</h4><table class="tabla-listado">';
+		echo '<a href="menuProveedores.php"><h4>Menï¿½ proveedores</h4></a><h4>Listado de proveedores</h4><table class="tabla-listado">';
 		
 		//cabecera de la tabla
-		echo '<tr class="cabeceraTabla"><td><b>Nombre</b></td><td><b>Dirección</b></td><td><b>Localidad</b></td><td><b>Teléfono</b></td><td><b>Email</b></td></tr>';
+		echo '<tr class="cabeceraTabla"><td><b>Nombre</b></td><td><b>Direcciï¿½n</b></td><td><b>Localidad</b></td><td><b>Telï¿½fono</b></td><td><b>Email</b></td></tr>';
 		
 		$i=1;
-		//para cada artículo añadimos sus propiedades
+		//para cada artï¿½culo aï¿½adimos sus propiedades
 		foreach ($stmt as $row)
 		{
 			if ($i%2==0)
@@ -385,13 +385,13 @@
 
 	function listaCli($stmt)
 	{
-		echo '<a href="menuClientes.php"><h4>Menú clientes</h4></a><h4>Listado de clientes</h4><table class="tabla-listado">';
+		echo '<a href="menuClientes.php"><h4>Menï¿½ clientes</h4></a><h4>Listado de clientes</h4><table class="tabla-listado">';
 		
 		//cabecera de la tabla
-		echo '<tr class="cabeceraTabla"><td><b>Titulo</b></td><td><b>Nombre</b></td><td><b>Apellidos</b></td><td><b>Teléfono</b></td><td><b>Dirección</b></td><td><b>CP</b></td></tr>';
+		echo '<tr class="cabeceraTabla"><td><b>Titulo</b></td><td><b>Nombre</b></td><td><b>Apellidos</b></td><td><b>Telï¿½fono</b></td><td><b>Direcciï¿½n</b></td><td><b>CP</b></td></tr>';
 		
 		$i=1;
-		//para cada cliente añadimos sus propiedades
+		//para cada cliente aï¿½adimos sus propiedades
 		foreach ($stmt as $row)
 		{
 			if ($i%2==0)
@@ -460,7 +460,7 @@
 				$dia='martes';
 				break;
 			case 3:
-				$dia='miércoles';
+				$dia='miï¿½rcoles';
 				break;
 			case 4:
 				$dia='jueves';
@@ -469,7 +469,7 @@
 				$dia='viernes';
 				break;
 			case 6:
-				$dia='sábado';
+				$dia='sï¿½bado';
 				break;
 		}	
 
@@ -578,12 +578,12 @@ function eliminaLineaVenta($lineaVenta){
 
 		global $dbh;
 		
-		//obtenemos el artículo
+		//obtenemos el artï¿½culo
 		$query = "SELECT Referencia FROM lineaventa WHERE IdLineaVenta = $lineaVenta ";
 		$stmt = $dbh -> query($query);
 		$row = $stmt -> fetch();		
 		$Referencia = $row['Referencia'];
-		//aumentamos las unidades de ese artículo si no es intangible
+		//aumentamos las unidades de ese artï¿½culo si no es intangible
 		if (!esIntangible($Referencia))
 		{
 			//obtenemos las unidades actuales
@@ -592,13 +592,13 @@ function eliminaLineaVenta($lineaVenta){
 			$row = $stmt -> fetch();		
 			$unidades = $row['Unidades'];
 
-			//sumamos las que pertenecían a esta línea de venta
+			//sumamos las que pertenecï¿½an a esta lï¿½nea de venta
 			$query = "SELECT Unidades FROM lineaventa WHERE IdLineaVenta = '$lineaVenta'";
 			$stmt = $dbh -> query($query);
 			$row = $stmt -> fetch();		
 			$unidades += $row['Unidades'];
 
-			//finalmente actualizamos la tabla artículo
+			//finalmente actualizamos la tabla artï¿½culo
 			$sql = "UPDATE articulo SET Unidades = $unidades WHERE Referencia = '$Referencia'";
 			$dbh -> exec($sql);
 		}
@@ -641,6 +641,24 @@ function redondeaIVA ($num){
 
 }
 
+function calculaNumeroPresupuesto ($IdPresupuesto, $fecha){
+	global $dbh;
+
+	$anoPresupuesto = substr($fecha,0,4);
+
+	$query2 = "SELECT IdPresupuesto FROM presupuesto WHERE YEAR(Fecha) in ($anoPresupuesto) ORDER BY IdPresupuesto ASC";
+	$stmt = $dbh->query($query2);
+
+	$numPresupuesto = 1;
+	foreach ($stmt as $row){
+		if ($row['IdPresupuesto'] == $IdPresupuesto) {
+			break;
+		}
+		$numPresupuesto++;
+	}
+	return $numPresupuesto.'/'.$anoPresupuesto;
+}
+
 function calculaNumeroFactura ($IdVenta, $fecha){
 		global $dbh;
 		
@@ -676,7 +694,7 @@ function calculaNumeroFactura ($IdVenta, $fecha){
 				
 				$precioVenta=precioVenta($IdVenta);
 				
-				//Cálculo del número de factura
+				//Cï¿½lculo del nï¿½mero de factura
 				if ($precioVenta<0)
 				{
 					$numFactura = 'A'.$numFactura;
@@ -726,7 +744,7 @@ function calculaNumeroFacturaAntiguedad ($IdVenta, $fecha){
 			
 			$precioVenta=precioVenta($IdVenta);
 			
-			//Cálculo del número de factura
+			//Cï¿½lculo del nï¿½mero de factura
 			if ($precioVenta<0)
 			{
 				$numFactura = 'A-'.$numFactura;

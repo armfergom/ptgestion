@@ -18,17 +18,18 @@
 		$stmt2 = $dbh -> query($query2);
 		$row2 = $stmt2 -> fetch();
 		$anoPres=substr($row2['Fecha'],0,4);
+		$idPresupuesto=$row2['IdPresupuesto'];
 
 		$cliente=$row2['IdCliente'];
 		$query3="SELECT * FROM cliente WHERE IdCliente=$cliente";
 		$stmt3 = $dbh -> query($query3);
 		$row3 = $stmt3 -> fetch();
 		
-		//Según el título del cliente, construiremos el nombre de una forma u otra.
+		//Segï¿½n el tï¿½tulo del cliente, construiremos el nombre de una forma u otra.
 		switch($row3['Titulo'])
 		{
 			case 'Sr. D.':
-			case 'Sra. Dª.':
+			case 'Sra. Dï¿½.':
 				$cadenaTituloEtc = $row3['Titulo'] . ' ' . $row3['Nombre'] . ' ' . $row3['Apellidos'];
 				break;
 			case 'Sres. de':
@@ -59,7 +60,7 @@
 				$queryFac="SELECT * FROM factura WHERE IdVenta=$IdVenta";
 				
             $stmtFac = $dbh -> query($queryFac);
-			//Si ya se había hecho una factura, tomamos los datos.
+			//Si ya se habï¿½a hecho una factura, tomamos los datos.
             if (($stmtFac -> rowcount()) > 0){
                 $rowFac = $stmtFac -> fetch();
                 $IdFactura=$rowFac['IdFactura'];
@@ -68,7 +69,7 @@
 				else
 					$IdFactura = calculaNumeroFactura($IdVenta,$fecha);
             }
-			//Si no se había hecho la factura, la damos de alta.
+			//Si no se habï¿½a hecho la factura, la damos de alta.
             else{
 				if ($ant == 'Si')
 					$sqlFac="INSERT INTO facturaant (IdVenta) VALUES ($IdVenta)";
@@ -97,7 +98,7 @@
 		else
 			$conDesc=false;
 			
-		//Vemos si el CP y el NIF existen. Si no no se mostrarán.	
+		//Vemos si el CP y el NIF existen. Si no no se mostrarï¿½n.	
 		if ($row3['CP']==0)
 			$CP=null;
 		else
@@ -112,11 +113,12 @@
 		$baseImponible=0;
 		$capituloTemporal=false;
         $subcapituloTemporal=false;
-        
-		//Recorremos los datos de la linea de presupuesto para ir mostrándolos.
+        $numPresupuesto = calculaNumeroPresupuesto($idPresupuesto,$fecha);
+
+		//Recorremos los datos de la linea de presupuesto para ir mostrï¿½ndolos.
 		foreach ($stmt as $row){
         
-			//Si es una nueva página tendremos que mostrar otra vez el encabezado.
+			//Si es una nueva pï¿½gina tendremos que mostrar otra vez el encabezado.
 			if ($nuevaPag){
 			    if ($electronica == 'no'){
            			echo '<table class="tabla-factura-arriba">
@@ -135,22 +137,22 @@
 					<table class="tabla-factura">';
 				}
 				else{
-                   	echo ' 	<tr class="datosCliente1"><td class="margen-lateral"></td><td class="ancho2">'.$cadenaTituloEtc.'</td><td class="alineado-derecha"> P-'.$row2['IdPresupuesto'].'</td><td class="margen-lateral"></td></tr>';
+                   	echo ' 	<tr class="datosCliente1"><td class="margen-lateral"></td><td class="ancho2">'.$cadenaTituloEtc.'</td><td class="alineado-derecha"> P-'.$numPresupuesto.'</td><td class="margen-lateral"></td></tr>';
 					echo '<tr class="datosCliente2"><td class="margen-lateral"></td><td colspan="2"></td><td class="margen-lateral"></td></tr>
 					<tr class="datosCliente3"><td class="margen-lateral"></td><td colspan="2"></td><td class="margen-lateral"></td></tr></table>
 					<table class="tabla-factura">';
 				}
 					
 				
-				//Tipos de datos. Distinto si hay algún artículo con descuento.
+				//Tipos de datos. Distinto si hay algï¿½n artï¿½culo con descuento.
 				if ($conDesc)
-					echo '<tr class="alturaNormal"><td class="margen-lateral"></td><td><b>Ref. Art.</b></td><td><b>Descripción</b></td><td><b>Precio unidad</b></td><td><b>Uds.</b></td><td><b>Desc.</b></td><td class="alineado-derecha"><b>Total</b></td><td class="margen-lateral"></td></tr>';
+					echo '<tr class="alturaNormal"><td class="margen-lateral"></td><td><b>Ref. Art.</b></td><td><b>Descripciï¿½n</b></td><td><b>Precio unidad</b></td><td><b>Uds.</b></td><td><b>Desc.</b></td><td class="alineado-derecha"><b>Total</b></td><td class="margen-lateral"></td></tr>';
 				else
-					echo '<tr class="alturaNormal"><td class="margen-lateral"></td><td><b>Ref. Art.</b></td><td><b>Descripción</b></td><td><b>Precio unidad</b></td><td><b>Uds.</b></td><td class="alineado-derecha"><b>Total</b></td><td class="margen-lateral"></td></tr>';
+					echo '<tr class="alturaNormal"><td class="margen-lateral"></td><td><b>Ref. Art.</b></td><td><b>Descripciï¿½n</b></td><td><b>Precio unidad</b></td><td><b>Uds.</b></td><td class="alineado-derecha"><b>Total</b></td><td class="margen-lateral"></td></tr>';
 						
                     $lineas=1;
 
-					//Si antes de terminar la página anterior faltaba un capítulo nuevo por escribir.
+					//Si antes de terminar la pï¿½gina anterior faltaba un capï¿½tulo nuevo por escribir.
                     if ($continuarNuevoC){
 						if (!$conDesc)
 							echo '<tr class="alturaNormal"><td class="margen-lateral"></td><td colspan="5" class="alineado-izquierda"><b>CAP. '.$nombreCapitulo.'</b></td><td class="margen-lateral"></td></tr>';
@@ -162,7 +164,7 @@
 						$continuarNuevoC=false;
                     }
 					
-					//Si antes de terminar la página anterior faltaba un capítulo nuevo por escribir.
+					//Si antes de terminar la pï¿½gina anterior faltaba un capï¿½tulo nuevo por escribir.
                     if ($continuarNuevoS){
 						if (!$conDesc)
 							echo '<tr class="alturaNormal"><td class="margen-lateral"></td><td colspan="5" class="alineado-izquierda"><b>'.$nombreSubcapitulo.'</b></td><td class="margen-lateral"></td></tr>';
@@ -173,15 +175,15 @@
                         $subcapituloNuevo=false;
 						$continuarNuevoS=false;
                     }
-					//Si antes de terminar la página anterior faltaba un artículo por escribir.
+					//Si antes de terminar la pï¿½gina anterior faltaba un artï¿½culo por escribir.
                     if ($continuarNormal){
 						if (!$conDesc)
-							echo '<tr class="alturaNormal"><td class="margen-lateral"></td><td>'.$referencia.'</td><td class="descripcion">'.$descr.'</td><td>'.formatoDinero($precioUnidad).' €</td><td>'.$unidades.'</td><td class="alineado-derecha">'.formatoDinero($precioUnidad*$unidades).' €</td><td class="margen-lateral"></td></tr>';
+							echo '<tr class="alturaNormal"><td class="margen-lateral"></td><td>'.$referencia.'</td><td class="descripcion">'.$descr.'</td><td>'.formatoDinero($precioUnidad).' ï¿½</td><td>'.$unidades.'</td><td class="alineado-derecha">'.formatoDinero($precioUnidad*$unidades).' ï¿½</td><td class="margen-lateral"></td></tr>';
                         else{
 							if ($descuento == 0)
-								echo '<tr class="alturaNormal"><td class="margen-lateral"></td><td>'.$referencia.'</td><td class="descripcion">'.$descr.'</td><td>'.formatoDinero($precioUnidad).' €</td><td>'.$unidades.'</td><td></td><td class="alineado-derecha">'.formatoDinero($precioUnidad*$unidades).' €</td><td class="margen-lateral"></td></tr>';
+								echo '<tr class="alturaNormal"><td class="margen-lateral"></td><td>'.$referencia.'</td><td class="descripcion">'.$descr.'</td><td>'.formatoDinero($precioUnidad).' ï¿½</td><td>'.$unidades.'</td><td></td><td class="alineado-derecha">'.formatoDinero($precioUnidad*$unidades).' ï¿½</td><td class="margen-lateral"></td></tr>';
 							else
-								echo '<tr class="alturaNormal"><td class="margen-lateral"></td><td>'.$referencia.'</td><td class="descripcion">'.$descr.'</td><td>'.formatoDinero($precioUnidad).' €</td><td>'.$unidades.'</td><td>'.$descuento.' %</td><td class="alineado-derecha">'.formatoDinero((($precioUnidad*$unidades)-(($precioUnidad*$unidades*$descuento)/100))).' €</td><td class="margen-lateral"></td></tr>';	
+								echo '<tr class="alturaNormal"><td class="margen-lateral"></td><td>'.$referencia.'</td><td class="descripcion">'.$descr.'</td><td>'.formatoDinero($precioUnidad).' ï¿½</td><td>'.$unidades.'</td><td>'.$descuento.' %</td><td class="alineado-derecha">'.formatoDinero((($precioUnidad*$unidades)-(($precioUnidad*$unidades*$descuento)/100))).' ï¿½</td><td class="margen-lateral"></td></tr>';	
 						}
 						$lineas++;
                         $totalCapitulo+=($precioUnidad*$unidades)-(($precioUnidad*$unidades*$descuento)/100);
@@ -199,7 +201,7 @@
                 $capituloNuevo=true;
             }
             else{
-				//Si el capítulo nuevo es distinto de el que estabamos tratando, el capítulo que estabamos tratando termina y empieza otro.
+				//Si el capï¿½tulo nuevo es distinto de el que estabamos tratando, el capï¿½tulo que estabamos tratando termina y empieza otro.
                 if($capituloTemporal != $row['IdCapitulo']){
                     $capituloTemporal2=$nombreCapitulo;
                     $capituloTemporal=$row['IdCapitulo'];
@@ -211,7 +213,7 @@
                     $capituloNuevo=true;
                 }
             }
-            //Si es el primer subcapitulo, o cambiamos de capitulo o estamos en un capitulo nuevo, habrá un cambio de subcapítulo.
+            //Si es el primer subcapitulo, o cambiamos de capitulo o estamos en un capitulo nuevo, habrï¿½ un cambio de subcapï¿½tulo.
             if(!$subcapituloTemporal || $subcapituloTemporal != $row['IdSubcapitulo'] || $capituloNuevo){   
                 $subcapituloTemporal=$row['IdSubcapitulo'];
                 $sqlNombreS="SELECT Nombre FROM subcapitulo WHERE IdSubcapitulo=$subcapituloTemporal";
@@ -235,13 +237,13 @@
 				$descr=$nombre.' '.$comentario;
 				
 				//Si es el final del capitulo y no es factura de un presupuesto,
-				//Escribimos el total del capítulo.
+				//Escribimos el total del capï¿½tulo.
                 if (!$facturaPresupuesto){
                     if ($finalCapitulo){
 						if (!$conDesc)
-							echo '<tr class="alturaNormal"><td class="margen-lateral"></td><td colspan="4" class="alineado-derecha"><b>TOTAL '.$capituloTemporal2.'</b><br/><b>'.cuotaIVA($fecha).'</b></td><td class="alineado-derecha">'.formatoDinero(redondea($totalCapitulo)).' € <br />'.formatoDinero(impuestoIVA($totalCapitulo, $fecha)) .' €</td><td class="margen-lateral"></td></tr>';
+							echo '<tr class="alturaNormal"><td class="margen-lateral"></td><td colspan="4" class="alineado-derecha"><b>TOTAL '.$capituloTemporal2.'</b><br/><b>'.cuotaIVA($fecha).'</b></td><td class="alineado-derecha">'.formatoDinero(redondea($totalCapitulo)).' ï¿½ <br />'.formatoDinero(impuestoIVA($totalCapitulo, $fecha)) .' ï¿½</td><td class="margen-lateral"></td></tr>';
                         else
-							echo '<tr class="alturaNormal"><td class="margen-lateral"></td><td colspan="5" class="alineado-derecha"><b>TOTAL '.$capituloTemporal2.'</b><br/><b>'.cuotaIVA($fecha).'</b></td><td class="alineado-derecha">'.formatoDinero(redondea($totalCapitulo)).' € <br />'.formatoDinero(impuestoIVA($totalCapitulo, $fecha)) .' €</td><td class="margen-lateral"></td></tr>';
+							echo '<tr class="alturaNormal"><td class="margen-lateral"></td><td colspan="5" class="alineado-derecha"><b>TOTAL '.$capituloTemporal2.'</b><br/><b>'.cuotaIVA($fecha).'</b></td><td class="alineado-derecha">'.formatoDinero(redondea($totalCapitulo)).' ï¿½ <br />'.formatoDinero(impuestoIVA($totalCapitulo, $fecha)) .' ï¿½</td><td class="margen-lateral"></td></tr>';
 
 						$lineas++;
                         $finalCapitulo=false;
@@ -250,7 +252,7 @@
                 }
 				
                 //Escribimos nuevo capitulo si lo hay
-				//Si lineas == 8, no cabe, se hará en la siguiente vuelta
+				//Si lineas == 8, no cabe, se harï¿½ en la siguiente vuelta
                 if( $lineas >= 8 && $capituloNuevo){
                     $continuarNuevoC=true;
 					$nuevaPag=true;
@@ -300,12 +302,12 @@
 				}
                 else{
 					if (!$conDesc)
-						echo '<tr class="alturaNormal"><td class="margen-lateral"></td><td>'.$referencia.'</td><td class="descripcion">'.$descr.'</td><td>'.formatoDinero($precioUnidad).' €</td><td>'.$unidades.'</td><td class="alineado-derecha">'.formatoDinero($precioUnidad*$unidades).' €</td><td class="margen-lateral"></td></tr>';
+						echo '<tr class="alturaNormal"><td class="margen-lateral"></td><td>'.$referencia.'</td><td class="descripcion">'.$descr.'</td><td>'.formatoDinero($precioUnidad).' ï¿½</td><td>'.$unidades.'</td><td class="alineado-derecha">'.formatoDinero($precioUnidad*$unidades).' ï¿½</td><td class="margen-lateral"></td></tr>';
                     else{
 						if ($descuento == 0)
-							echo '<tr class="alturaNormal"><td class="margen-lateral"></td><td>'.$referencia.'</td><td class="descripcion">'.$descr.'</td><td>'.formatoDinero($precioUnidad).' €</td><td>'.$unidades.'</td><td></td><td class="alineado-derecha">'.formatoDinero($precioUnidad*$unidades).' €</td><td class="margen-lateral"></td></tr>';
+							echo '<tr class="alturaNormal"><td class="margen-lateral"></td><td>'.$referencia.'</td><td class="descripcion">'.$descr.'</td><td>'.formatoDinero($precioUnidad).' ï¿½</td><td>'.$unidades.'</td><td></td><td class="alineado-derecha">'.formatoDinero($precioUnidad*$unidades).' ï¿½</td><td class="margen-lateral"></td></tr>';
 						else
-							echo '<tr class="alturaNormal"><td class="margen-lateral"></td><td>'.$referencia.'</td><td class="descripcion">'.$descr.'</td><td>'.formatoDinero($precioUnidad).' €</td><td>'.$unidades.'</td><td>'.$descuento.' %</td><td class="alineado-derecha">'.formatoDinero(redondea(($precioUnidad*$unidades)-(($precioUnidad*$unidades*$descuento)/100))).' €</td><td class="margen-lateral"></td></tr>';	
+							echo '<tr class="alturaNormal"><td class="margen-lateral"></td><td>'.$referencia.'</td><td class="descripcion">'.$descr.'</td><td>'.formatoDinero($precioUnidad).' ï¿½</td><td>'.$unidades.'</td><td>'.$descuento.' %</td><td class="alineado-derecha">'.formatoDinero(redondea(($precioUnidad*$unidades)-(($precioUnidad*$unidades*$descuento)/100))).' ï¿½</td><td class="margen-lateral"></td></tr>';	
 					}                    
 					$lineas++;
 					if ($lineas==10)
@@ -332,21 +334,21 @@
 					<table class="tabla-factura">';
 				}
 				else{
-                   	echo ' 	<tr class="datosCliente1"><td class="margen-lateral"></td><td class="ancho2">'.$cadenaTituloEtc.'</td><td class="alineado-derecha"> P-'.$row2['IdPresupuesto'].'</td><td class="margen-lateral"></td></tr>';
+                   	echo ' 	<tr class="datosCliente1"><td class="margen-lateral"></td><td class="ancho2">'.$cadenaTituloEtc.'</td><td class="alineado-derecha"> P-'.$numPresupuesto.'</td><td class="margen-lateral"></td></tr>';
 					echo '<tr class="datosCliente2"><td class="margen-lateral"></td><td colspan="2"></td><td class="margen-lateral"></td></tr>
 					<tr class="datosCliente3"><td class="margen-lateral"></td><td colspan="2"></td><td class="margen-lateral"></td></tr></table>
 					<table class="tabla-factura">';
 				}
 				
-				//Tipos de datos. Distinto si hay algún artículo con descuento.
+				//Tipos de datos. Distinto si hay algï¿½n artï¿½culo con descuento.
 				if ($conDesc)
-					echo '<tr class="alturaNormal"><td class="margen-lateral"></td><td><b>Ref. Art.</b></td><td><b>Descripción</b></td><td><b>Precio unidad</b></td><td><b>Uds.</b></td><td><b>Desc.</b></td><td class="alineado-derecha"><b>Total</b></td><td class="margen-lateral"></td></tr>';
+					echo '<tr class="alturaNormal"><td class="margen-lateral"></td><td><b>Ref. Art.</b></td><td><b>Descripciï¿½n</b></td><td><b>Precio unidad</b></td><td><b>Uds.</b></td><td><b>Desc.</b></td><td class="alineado-derecha"><b>Total</b></td><td class="margen-lateral"></td></tr>';
 				else
-					echo '<tr class="alturaNormal"><td class="margen-lateral"></td><td><b>Ref. Art.</b></td><td><b>Descripción</b></td><td><b>Precio unidad</b></td><td><b>Uds.</b></td><td class="alineado-derecha"><b>Total</b></td><td class="margen-lateral"></td></tr>';
+					echo '<tr class="alturaNormal"><td class="margen-lateral"></td><td><b>Ref. Art.</b></td><td><b>Descripciï¿½n</b></td><td><b>Precio unidad</b></td><td><b>Uds.</b></td><td class="alineado-derecha"><b>Total</b></td><td class="margen-lateral"></td></tr>';
 						
                     $lineas=1;
 			}
-					//Si antes de terminar la página anterior faltaba un capítulo nuevo por escribir.
+					//Si antes de terminar la pï¿½gina anterior faltaba un capï¿½tulo nuevo por escribir.
                     if ($continuarNuevoC){
 						if (!$conDesc)
 							echo '<tr class="alturaNormal"><td class="margen-lateral"></td><td colspan="5" class="alineado-izquierda"><b>CAP. '.$nombreCapitulo.'</b></td><td class="margen-lateral"></td></tr>';
@@ -358,7 +360,7 @@
 						$continuarNuevoC=false;
                     }
 					
-					//Si antes de terminar la página anterior faltaba un capítulo nuevo por escribir.
+					//Si antes de terminar la pï¿½gina anterior faltaba un capï¿½tulo nuevo por escribir.
                     if ($continuarNuevoS){
 						if (!$conDesc)
 							echo '<tr class="alturaNormal"><td class="margen-lateral"></td><td colspan="5" class="alineado-izquierda"><b>'.$nombreSubcapitulo.'</b></td><td class="margen-lateral"></td></tr>';
@@ -369,15 +371,15 @@
                         $subcapituloNuevo=false;
 						$continuarNuevoS=false;
                     }
-					//Si antes de terminar la página anterior faltaba un artículo por escribir.
+					//Si antes de terminar la pï¿½gina anterior faltaba un artï¿½culo por escribir.
                     if ($continuarNormal){
 						if (!$conDesc)
-							echo '<tr class="alturaNormal"><td class="margen-lateral"></td><td>'.$referencia.'</td><td class="descripcion">'.$descr.'</td><td>'.formatoDinero($precioUnidad).' €</td><td>'.$unidades.'</td><td class="alineado-derecha">'.formatoDinero($precioUnidad*$unidades).' €</td><td class="margen-lateral"></td></tr>';
+							echo '<tr class="alturaNormal"><td class="margen-lateral"></td><td>'.$referencia.'</td><td class="descripcion">'.$descr.'</td><td>'.formatoDinero($precioUnidad).' ï¿½</td><td>'.$unidades.'</td><td class="alineado-derecha">'.formatoDinero($precioUnidad*$unidades).' ï¿½</td><td class="margen-lateral"></td></tr>';
                         else{
 							if ($descuento == 0)
-								echo '<tr class="alturaNormal"><td class="margen-lateral"></td><td>'.$referencia.'</td><td class="descripcion">'.$descr.'</td><td>'.formatoDinero($precioUnidad).' €</td><td>'.$unidades.'</td><td></td><td class="alineado-derecha">'.formatoDinero($precioUnidad*$unidades).' €</td><td class="margen-lateral"></td></tr>';
+								echo '<tr class="alturaNormal"><td class="margen-lateral"></td><td>'.$referencia.'</td><td class="descripcion">'.$descr.'</td><td>'.formatoDinero($precioUnidad).' ï¿½</td><td>'.$unidades.'</td><td></td><td class="alineado-derecha">'.formatoDinero($precioUnidad*$unidades).' ï¿½</td><td class="margen-lateral"></td></tr>';
 							else
-								echo '<tr class="alturaNormal"><td class="margen-lateral"></td><td>'.$referencia.'</td><td class="descripcion">'.$descr.'</td><td>'.formatoDinero($precioUnidad).' €</td><td>'.$unidades.'</td><td>'.$descuento.' %</td><td class="alineado-derecha">'.formatoDinero((($precioUnidad*$unidades)-(($precioUnidad*$unidades*$descuento)/100))).' €</td><td class="margen-lateral"></td></tr>';	
+								echo '<tr class="alturaNormal"><td class="margen-lateral"></td><td>'.$referencia.'</td><td class="descripcion">'.$descr.'</td><td>'.formatoDinero($precioUnidad).' ï¿½</td><td>'.$unidades.'</td><td>'.$descuento.' %</td><td class="alineado-derecha">'.formatoDinero((($precioUnidad*$unidades)-(($precioUnidad*$unidades*$descuento)/100))).' ï¿½</td><td class="margen-lateral"></td></tr>';	
 						}
 						$lineas++;
                         $totalCapitulo+=($precioUnidad*$unidades)-(($precioUnidad*$unidades*$descuento)/100);
@@ -385,14 +387,14 @@
                     }
 					$nuevaPag=false;	
 		
-        //a partir de aquí ya no hay más artículos que escribir.
+        //a partir de aquï¿½ ya no hay mï¿½s artï¿½culos que escribir.
 		$capituloTemporal2=$nombreCapitulo;
          if (!$facturaPresupuesto){
                 if($lineas <10){
 					if (!$conDesc)
-						echo '<tr class="alturaNormal"><td class="margen-lateral"></td><td colspan="4" class="alineado-derecha"><b>TOTAL '.$capituloTemporal2.'</b><br/><b>'.cuotaIVA($fecha).'</b></td><td class="alineado-derecha">'.formatoDinero(redondea($totalCapitulo)).' € <br />'.formatoDinero(impuestoIVA($totalCapitulo, $fecha)).' €</td><td class="margen-lateral"></td></tr>';
+						echo '<tr class="alturaNormal"><td class="margen-lateral"></td><td colspan="4" class="alineado-derecha"><b>TOTAL '.$capituloTemporal2.'</b><br/><b>'.cuotaIVA($fecha).'</b></td><td class="alineado-derecha">'.formatoDinero(redondea($totalCapitulo)).' ï¿½ <br />'.formatoDinero(impuestoIVA($totalCapitulo, $fecha)).' ï¿½</td><td class="margen-lateral"></td></tr>';
                     else
-						echo '<tr class="alturaNormal"><td class="margen-lateral"></td><td colspan="5" class="alineado-derecha"><b>TOTAL '.$capituloTemporal2.'</b><br/><b>'.cuotaIVA($fecha).'</b></td><td class="alineado-derecha">'.formatoDinero(redondea($totalCapitulo)).' € <br />'.formatoDinero(impuestoIVA($totalCapitulo, $fecha)).' €</td><td class="margen-lateral"></td></tr>';
+						echo '<tr class="alturaNormal"><td class="margen-lateral"></td><td colspan="5" class="alineado-derecha"><b>TOTAL '.$capituloTemporal2.'</b><br/><b>'.cuotaIVA($fecha).'</b></td><td class="alineado-derecha">'.formatoDinero(redondea($totalCapitulo)).' ï¿½ <br />'.formatoDinero(impuestoIVA($totalCapitulo, $fecha)).' ï¿½</td><td class="margen-lateral"></td></tr>';
                     $lineas++;
                     $totalCapitulo=0;
                 }
@@ -413,16 +415,16 @@
 						<table class="tabla-factura">';
 					}
 					else{
-               	    	echo ' 	<tr class="datosCliente1"><td class="margen-lateral"></td><td class="ancho2">'.$cadenaTituloEtc.'</td><td class="alineado-derecha"> P-'.$row2['IdPresupuesto'].'</td><td class="margen-lateral"></td></tr>';
+               	    	echo ' 	<tr class="datosCliente1"><td class="margen-lateral"></td><td class="ancho2">'.$cadenaTituloEtc.'</td><td class="alineado-derecha"> P-'.$numPresupuesto.'</td><td class="margen-lateral"></td></tr>';
 						echo '<tr class="datosCliente2"><td class="margen-lateral"></td><td colspan="2"></td><td class="margen-lateral"></td></tr>
 						<tr class="datosCliente3"><td class="margen-lateral"></td><td colspan="2"></td><td class="margen-lateral"></td></tr></table>
 						<table class="tabla-factura">';
 					}
 					
 					if ($conDesc)
-						echo '<tr class="alturaNormal"><td class="margen-lateral"></td><td><b>Ref. Art.</b></td><td><b>Descripción</b></td><td><b>Precio unidad</b></td><td><b>Uds.</b></td><td><b>Desc.</b></td><td class="alineado-derecha"><b>Total</b></td><td class="margen-lateral"></td></tr>';
+						echo '<tr class="alturaNormal"><td class="margen-lateral"></td><td><b>Ref. Art.</b></td><td><b>Descripciï¿½n</b></td><td><b>Precio unidad</b></td><td><b>Uds.</b></td><td><b>Desc.</b></td><td class="alineado-derecha"><b>Total</b></td><td class="margen-lateral"></td></tr>';
 					else
-						echo '<tr class="alturaNormal"><td class="margen-lateral"></td><td><b>Ref. Art.</b></td><td><b>Descripción</b></td><td><b>Precio unidad</b></td><td><b>Uds.</b></td><td class="alineado-derecha"><b>Total</b></td><td class="margen-lateral"></td></tr>';
+						echo '<tr class="alturaNormal"><td class="margen-lateral"></td><td><b>Ref. Art.</b></td><td><b>Descripciï¿½n</b></td><td><b>Precio unidad</b></td><td><b>Uds.</b></td><td class="alineado-derecha"><b>Total</b></td><td class="margen-lateral"></td></tr>';
 					//
 					if ($continuarNuevoC){
 						if (!$conDesc)
@@ -446,12 +448,12 @@
                     }
 					if ($continuarNormal){
 						if (!$conDesc)
-							echo '<tr class="alturaNormal"><td class="margen-lateral"></td><td>'.$referencia.'</td><td class="descripcion">'.$descr.'</td><td>'.formatoDinero($precioUnidad).' €</td><td>'.$unidades.'</td><td class="alineado-derecha">'.formatoDinero($precioUnidad*$unidades).' €</td><td class="margen-lateral"></td></tr>';
+							echo '<tr class="alturaNormal"><td class="margen-lateral"></td><td>'.$referencia.'</td><td class="descripcion">'.$descr.'</td><td>'.formatoDinero($precioUnidad).' ï¿½</td><td>'.$unidades.'</td><td class="alineado-derecha">'.formatoDinero($precioUnidad*$unidades).' ï¿½</td><td class="margen-lateral"></td></tr>';
                         else{
 							if ($descuento == 0)
-								echo '<tr class="alturaNormal"><td class="margen-lateral"></td><td>'.$referencia.'</td><td class="descripcion">'.$descr.'</td><td>'.formatoDinero($precioUnidad).' €</td><td>'.$unidades.'</td><td></td><td class="alineado-derecha">'.formatoDinero($precioUnidad*$unidades).' €</td><td class="margen-lateral"></td></tr>';
+								echo '<tr class="alturaNormal"><td class="margen-lateral"></td><td>'.$referencia.'</td><td class="descripcion">'.$descr.'</td><td>'.formatoDinero($precioUnidad).' ï¿½</td><td>'.$unidades.'</td><td></td><td class="alineado-derecha">'.formatoDinero($precioUnidad*$unidades).' ï¿½</td><td class="margen-lateral"></td></tr>';
 							else
-								echo '<tr class="alturaNormal"><td class="margen-lateral"></td><td>'.$referencia.'</td><td class="descripcion">'.$descr.'</td><td>'.formatoDinero($precioUnidad).' €</td><td>'.$unidades.'</td><td>'.$descuento.' %</td><td class="alineado-derecha">'.formatoDinero(redondea(($precioUnidad*$unidades)-(($precioUnidad*$unidades*$descuento)/100))).' €</td><td class="margen-lateral"></td></tr>';	
+								echo '<tr class="alturaNormal"><td class="margen-lateral"></td><td>'.$referencia.'</td><td class="descripcion">'.$descr.'</td><td>'.formatoDinero($precioUnidad).' ï¿½</td><td>'.$unidades.'</td><td>'.$descuento.' %</td><td class="alineado-derecha">'.formatoDinero(redondea(($precioUnidad*$unidades)-(($precioUnidad*$unidades*$descuento)/100))).' ï¿½</td><td class="margen-lateral"></td></tr>';	
 						}
 						$lineas++;
                         $totalCapitulo+=($precioUnidad*$unidades)-(($precioUnidad*$unidades*$descuento)/100);
@@ -461,9 +463,9 @@
 					$lineas=2;
 					
 					if (!$conDesc)
-						echo '<tr class="alturaNormal"><td class="margen-lateral"></td><td colspan="4" class="alineado-derecha"><b>TOTAL '.$capituloTemporal2.'</b><br/><b>'.cuotaIVA($fecha).'</b></td><td class="alineado-derecha">'.formatoDinero(redondea($totalCapitulo)).' € <br />'.formatoDinero(impuestoIVA($totalCapitulo, $fecha)).' €</td><td class="margen-lateral"></td></tr>';
+						echo '<tr class="alturaNormal"><td class="margen-lateral"></td><td colspan="4" class="alineado-derecha"><b>TOTAL '.$capituloTemporal2.'</b><br/><b>'.cuotaIVA($fecha).'</b></td><td class="alineado-derecha">'.formatoDinero(redondea($totalCapitulo)).' ï¿½ <br />'.formatoDinero(impuestoIVA($totalCapitulo, $fecha)).' ï¿½</td><td class="margen-lateral"></td></tr>';
                     else
-						echo '<tr class="alturaNormal"><td class="margen-lateral"></td><td colspan="5" class="alineado-derecha"><b>TOTAL '.$capituloTemporal2.'</b><br/><b>'.cuotaIVA($fecha).'</b></td><td class="alineado-derecha">'.formatoDinero(redondea($totalCapitulo)).' € <br />'.formatoDinero(impuestoIVA($totalCapitulo, $fecha)).' €</td><td class="margen-lateral"></td></tr>';
+						echo '<tr class="alturaNormal"><td class="margen-lateral"></td><td colspan="5" class="alineado-derecha"><b>TOTAL '.$capituloTemporal2.'</b><br/><b>'.cuotaIVA($fecha).'</b></td><td class="alineado-derecha">'.formatoDinero(redondea($totalCapitulo)).' ï¿½ <br />'.formatoDinero(impuestoIVA($totalCapitulo, $fecha)).' ï¿½</td><td class="margen-lateral"></td></tr>';
                     $lineas++;
 					$totalCapitulo=0;
 
@@ -473,9 +475,9 @@
 
 		if ($lineas < 10){
 			if (!$conDesc)
-				echo '<tr class="alturaNormal"><td class="margen-lateral"></td><td></td><td class="descripcion"></td><td>SUMA TOTAL BASE IMPONIBLE<br />'.cuotaSumaIVA($fecha).'<br /><b>TOTAL I.V.A INCLUIDO</b></td><td></td><td class="alineado-derecha">'.formatoDinero($baseImponible).' €<br/>'. formatoDinero(impuestoIVA($baseImponible, $fecha)) .' €<br/>'.formatoDinero(precioPresupuesto($presupuesto)).' €</td><td class="margen-lateral"></td></tr>';				
+				echo '<tr class="alturaNormal"><td class="margen-lateral"></td><td></td><td class="descripcion"></td><td>SUMA TOTAL BASE IMPONIBLE<br />'.cuotaSumaIVA($fecha).'<br /><b>TOTAL I.V.A INCLUIDO</b></td><td></td><td class="alineado-derecha">'.formatoDinero($baseImponible).' ï¿½<br/>'. formatoDinero(impuestoIVA($baseImponible, $fecha)) .' ï¿½<br/>'.formatoDinero(precioPresupuesto($presupuesto)).' ï¿½</td><td class="margen-lateral"></td></tr>';				
 			else
-				echo '<tr class="alturaNormal"><td class="margen-lateral"></td><td></td><td class="descripcion"></td><td colspan=2>SUMA TOTAL BASE IMPONIBLE<br />'.cuotaSumaIVA($fecha).'<br /><b>TOTAL I.V.A INCLUIDO</b></td><td colspan=2 class="alineado-derecha">'.formatoDinero($baseImponible).' €<br/>'.formatoDinero(impuestoIVA($baseImponible, $fecha)) .' €<br/>'.formatoDinero(precioPresupuesto($presupuesto)).' €</td><td class="margen-lateral"></td></tr>';				
+				echo '<tr class="alturaNormal"><td class="margen-lateral"></td><td></td><td class="descripcion"></td><td colspan=2>SUMA TOTAL BASE IMPONIBLE<br />'.cuotaSumaIVA($fecha).'<br /><b>TOTAL I.V.A INCLUIDO</b></td><td colspan=2 class="alineado-derecha">'.formatoDinero($baseImponible).' ï¿½<br/>'.formatoDinero(impuestoIVA($baseImponible, $fecha)) .' ï¿½<br/>'.formatoDinero(precioPresupuesto($presupuesto)).' ï¿½</td><td class="margen-lateral"></td></tr>';				
 
 		}
 		else{
@@ -495,7 +497,7 @@
 				<table class="tabla-factura">';
 			}
 			else{
-              	echo ' 	<tr class="datosCliente1"><td class="margen-lateral"></td><td class="ancho2">'.$cadenaTituloEtc.'</td><td class="alineado-derecha"> P-'.$row2['IdPresupuesto'].'</td><td class="margen-lateral"></td></tr>';
+              	echo ' 	<tr class="datosCliente1"><td class="margen-lateral"></td><td class="ancho2">'.$cadenaTituloEtc.'</td><td class="alineado-derecha"> P-'.$numPresupuesto.'</td><td class="margen-lateral"></td></tr>';
 				echo '<tr class="datosCliente2"><td class="margen-lateral"></td><td colspan="2"></td><td class="margen-lateral"></td></tr>
 				<tr class="datosCliente3"><td class="margen-lateral"></td><td colspan="2"></td><td class="margen-lateral"></td></tr></table>
 				<table class="tabla-factura">';
@@ -503,9 +505,9 @@
 				
 
 			if (!$conDesc)
-				echo '<tr class="alturaNormal"><td class="margen-lateral"></td><td></td><td class="descripcion"></td><td>SUMA TOTAL BASE IMPONIBLE<br />'.cuotaSumaIVA($fecha).'<br /><b>TOTAL I.V.A INCLUIDO</b></td><td></td><td class="alineado-derecha">'.formatoDinero($baseImponible).' €<br/>'. formatoDinero(impuestoIVA($baseImponible, $fecha)) .' €<br/>'.formatoDinero(precioPresupuesto($presupuesto)).' €</td><td class="margen-lateral"></td></tr>';				
+				echo '<tr class="alturaNormal"><td class="margen-lateral"></td><td></td><td class="descripcion"></td><td>SUMA TOTAL BASE IMPONIBLE<br />'.cuotaSumaIVA($fecha).'<br /><b>TOTAL I.V.A INCLUIDO</b></td><td></td><td class="alineado-derecha">'.formatoDinero($baseImponible).' ï¿½<br/>'. formatoDinero(impuestoIVA($baseImponible, $fecha)) .' ï¿½<br/>'.formatoDinero(precioPresupuesto($presupuesto)).' ï¿½</td><td class="margen-lateral"></td></tr>';				
 			else
-				echo '<tr class="alturaNormal"><td class="margen-lateral"></td><td></td><td class="descripcion"></td><td colspan=2 >SUMA TOTAL BASE IMPONIBLE<br />'.cuotaSumaIVA($fecha).'<br /><b>TOTAL I.V.A INCLUIDO</b></td><td colspan=2 class="alineado-derecha">'.formatoDinero($baseImponible).' €<br/>'. formatoDinero(impuestoIVA($baseImponible, $fecha)) .' €<br/>'.formatoDinero(precioPresupuesto($presupuesto)).' €</td><td class="margen-lateral"></td></tr>';				
+				echo '<tr class="alturaNormal"><td class="margen-lateral"></td><td></td><td class="descripcion"></td><td colspan=2 >SUMA TOTAL BASE IMPONIBLE<br />'.cuotaSumaIVA($fecha).'<br /><b>TOTAL I.V.A INCLUIDO</b></td><td colspan=2 class="alineado-derecha">'.formatoDinero($baseImponible).' ï¿½<br/>'. formatoDinero(impuestoIVA($baseImponible, $fecha)) .' ï¿½<br/>'.formatoDinero(precioPresupuesto($presupuesto)).' ï¿½</td><td class="margen-lateral"></td></tr>';				
 				
 				$lineas=1;
 		}        
