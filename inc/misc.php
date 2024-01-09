@@ -641,6 +641,24 @@ function redondeaIVA ($num){
 
 }
 
+function calculaNumeroPresupuesto ($IdPresupuesto, $fecha){
+	global $dbh;
+
+	$anoPresupuesto = substr($fecha,0,4);
+
+	$query2 = "SELECT IdPresupuesto FROM presupuesto WHERE YEAR(Fecha) in ($anoPresupuesto) ORDER BY IdPresupuesto ASC";
+	$stmt = $dbh->query($query2);
+
+	$numPresupuesto = 1;
+	foreach ($stmt as $row){
+		if ($row['IdPresupuesto'] == $IdPresupuesto) {
+			break;
+		}
+		$numPresupuesto++;
+	}
+	return $numPresupuesto.'/'.$anoPresupuesto;
+}
+
 function calculaNumeroFactura ($IdVenta, $fecha){
 		global $dbh;
 		
