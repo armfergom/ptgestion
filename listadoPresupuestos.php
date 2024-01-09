@@ -1,6 +1,8 @@
 <?php
 	
-	include_once('inc/header.php');			
+	include_once('inc/header.php');		
+	include_once('inc/misc.php');
+
 	//obtemos los presupuestos
 	try 
 	{
@@ -34,7 +36,7 @@
 					echo "<p class=centrado>$textoMes de $año</p>";
 					
 					//cabecera de la tabla
-					echo '<table class="tabla-listado"><tr class="cabeceraTabla"><td><b>Id</b></td><td><b>Fecha</b></td><td><b>Precio total</b></td><td><b>Vendido</b></td></tr>';
+					echo '<table class="tabla-listado"><tr class="cabeceraTabla"><td><b>Id</b></td><td><b>Fecha</b></td><td><b>Precio total</b></td><td><b>Vendido</b></td><td><b>Número Presupuesto</b></td></tr>';
 				}
 				
 				
@@ -53,6 +55,7 @@
 				$precio = formatoDinero(precioPresupuesto($IdPresupuesto));
 				echo "<td>$precio</td>";
 				echo '<td>'.($row['IdVenta']!=NULL?'Sí':'No').'</td>';
+				echo '<td>'.calculaNumeroPresupuesto($row['IdPresupuesto'],$row['Fecha']).'</td>';
 				
 				echo '</tr>';
 			}
