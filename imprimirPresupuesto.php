@@ -23,7 +23,7 @@
 		$query3="SELECT * FROM cliente WHERE IdCliente=$cliente";
 		$stmt3 = $dbh -> query($query3);
 		$row3 = $stmt3 -> fetch();
-		
+		 asdfasdf asdf
 		//Según el título del cliente, construiremos el nombre de una forma u otra.
 		switch($row3['Titulo'])
 		{
