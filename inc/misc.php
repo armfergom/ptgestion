@@ -759,16 +759,38 @@ function calculaNumeroFacturaAntiguedad ($IdVenta, $fecha){
 
 }
 
-function calculaNumeroTicket($IdVenta){
+function calculaNumeroTicket ($idVenta){
+	global $dbh;
 
-		global $dbh;
+	$stmtVenta = $dbh->query("SELECT FechaVenta FROM venta WHERE IdVenta=$idVenta");
+	$row = $stmtVenta -> fetch();
+	$anoVenta = substr($row['FechaVenta'],0,4);
 
-		$queryTicket = "SELECT IdTicket FROM ticket WHERE IdVenta = $IdVenta";
-		$stmtTicket = $dbh -> query($queryTicket);
-		$ticket = $stmtTicket -> fetch();
-		
-		return $ticket['IdTicket'];
-		
+	$stmtTicket = $dbh->query("SELECT IdTicket FROM ticket WHERE IdVenta=$idVenta");
+	$row = $stmtTicket -> fetch();
+	$idTicket = $row['IdTicket'];
+
+	if (isset($idTicket)) {
+		if ($anoVenta < 2024) {
+			// Para tickets previos a 2024, seguir numeraciÔø?n correlativa (Solicitado por Blanca)
+			return $idTicket;
+		} else {
+			// A partir de 2024 crear tickets con numeraciÔø?n que resetea por aÔø?o
+			$stmtNumTicket = $dbh->query("SELECT IdTicket FROM ticket where IdVenta in (SELECT IdVenta from venta where YEAR(FechaVenta) in ($anoVenta)) ORDER BY IdTicket ASC");
+			
+			$numTicket = 1;
+			foreach ($stmtNumTicket as $row){
+				if ($row['IdTicket'] == $idTicket) {
+					break;
+				}
+				$numTicket++;
+			}
+	
+			return $numTicket.'/'.$anoVenta;
+		}
+	} else {
+		return "--";
+	}
 }
 
 function imprimirCabeceraTicket($tienda){

@@ -19,12 +19,14 @@
 		if (($stmt0 -> rowcount()) == 0){
 			$sql2="INSERT INTO ticket (IdVenta) VALUES ($venta)";
 			$dbh -> exec($sql2);
-			$numT= $dbh -> lastInsertId();
+			$ticketId= $dbh -> lastInsertId();
 		}
 		else{
 			$row0=$stmt0 -> fetch();
-			$numT=$row0['IdTicket'];
+			$ticketId=$row0['IdTicket'];
 		}
+
+		$numT=calculaNumeroTicket($venta)
 		
 		$query="SELECT * FROM lineaventa WHERE IdVenta = $venta";
 		$query2="SELECT * FROM venta WHERE IdVenta = $venta";
