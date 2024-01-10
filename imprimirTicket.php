@@ -26,7 +26,7 @@
 			$ticketId=$row0['IdTicket'];
 		}
 
-		$numT=calculaNumeroTicket($venta)
+		$numT=calculaNumeroTicket($venta);
 		
 		$query="SELECT * FROM lineaventa WHERE IdVenta = $venta";
 		$query2="SELECT * FROM venta WHERE IdVenta = $venta";
