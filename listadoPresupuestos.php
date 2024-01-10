@@ -36,7 +36,7 @@
 					echo "<p class=centrado>$textoMes de $año</p>";
 					
 					//cabecera de la tabla
-					echo '<table class="tabla-listado"><tr class="cabeceraTabla"><td><b>Id</b></td><td><b>Fecha</b></td><td><b>Precio total</b></td><td><b>Vendido</b></td><td><b>Número Presupuesto</b></td></tr>';
+					echo '<table class="tabla-listado"><tr class="cabeceraTabla"><td><b>Id</b></td><td><b>Fecha</b></td><td><b>Precio total</b></td><td><b>Vendido</b></td><td><b>Número Presupuesto</b></td></tr>'; 
 				}
 				
 				
