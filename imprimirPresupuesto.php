@@ -18,6 +18,7 @@
 		$stmt2 = $dbh -> query($query2);
 		$row2 = $stmt2 -> fetch();
 		$anoPres=substr($row2['Fecha'],0,4);
+		$idPresupuesto=$row2['IdPresupuesto'];
 
 		$cliente=$row2['IdCliente'];
 		$query3="SELECT * FROM cliente WHERE IdCliente=$cliente";
@@ -112,6 +113,7 @@
 		$baseImponible=0;
 		$capituloTemporal=false;
         $subcapituloTemporal=false;
+		$numPresupuesto=calculaNumeroPresupuesto($idPresupuesto,$fecha);
         
 		//Recorremos los datos de la linea de presupuesto para ir mostrándolos.
 		foreach ($stmt as $row){
@@ -135,7 +137,7 @@
 					<table class="tabla-factura">';
 				}
 				else{
-                   	echo ' 	<tr class="datosCliente1"><td class="margen-lateral"></td><td class="ancho2">'.$cadenaTituloEtc.'</td><td class="alineado-derecha"> P-'.$row2['IdPresupuesto'].'</td><td class="margen-lateral"></td></tr>';
+                   	echo ' 	<tr class="datosCliente1"><td class="margen-lateral"></td><td class="ancho2">'.$cadenaTituloEtc.'</td><td class="alineado-derecha"> P-'.$numPresupuesto.'</td><td class="margen-lateral"></td></tr>';
 					echo '<tr class="datosCliente2"><td class="margen-lateral"></td><td colspan="2"></td><td class="margen-lateral"></td></tr>
 					<tr class="datosCliente3"><td class="margen-lateral"></td><td colspan="2"></td><td class="margen-lateral"></td></tr></table>
 					<table class="tabla-factura">';
@@ -332,7 +334,7 @@
 					<table class="tabla-factura">';
 				}
 				else{
-                   	echo ' 	<tr class="datosCliente1"><td class="margen-lateral"></td><td class="ancho2">'.$cadenaTituloEtc.'</td><td class="alineado-derecha"> P-'.$row2['IdPresupuesto'].'</td><td class="margen-lateral"></td></tr>';
+                   	echo ' 	<tr class="datosCliente1"><td class="margen-lateral"></td><td class="ancho2">'.$cadenaTituloEtc.'</td><td class="alineado-derecha"> P-'.$numPresupuesto.'</td><td class="margen-lateral"></td></tr>';
 					echo '<tr class="datosCliente2"><td class="margen-lateral"></td><td colspan="2"></td><td class="margen-lateral"></td></tr>
 					<tr class="datosCliente3"><td class="margen-lateral"></td><td colspan="2"></td><td class="margen-lateral"></td></tr></table>
 					<table class="tabla-factura">';
@@ -413,7 +415,7 @@
 						<table class="tabla-factura">';
 					}
 					else{
-               	    	echo ' 	<tr class="datosCliente1"><td class="margen-lateral"></td><td class="ancho2">'.$cadenaTituloEtc.'</td><td class="alineado-derecha"> P-'.$row2['IdPresupuesto'].'</td><td class="margen-lateral"></td></tr>';
+               	    	echo ' 	<tr class="datosCliente1"><td class="margen-lateral"></td><td class="ancho2">'.$cadenaTituloEtc.'</td><td class="alineado-derecha"> P-'.$numPresupuesto.'</td><td class="margen-lateral"></td></tr>';
 						echo '<tr class="datosCliente2"><td class="margen-lateral"></td><td colspan="2"></td><td class="margen-lateral"></td></tr>
 						<tr class="datosCliente3"><td class="margen-lateral"></td><td colspan="2"></td><td class="margen-lateral"></td></tr></table>
 						<table class="tabla-factura">';
@@ -495,7 +497,7 @@
 				<table class="tabla-factura">';
 			}
 			else{
-              	echo ' 	<tr class="datosCliente1"><td class="margen-lateral"></td><td class="ancho2">'.$cadenaTituloEtc.'</td><td class="alineado-derecha"> P-'.$row2['IdPresupuesto'].'</td><td class="margen-lateral"></td></tr>';
+              	echo ' 	<tr class="datosCliente1"><td class="margen-lateral"></td><td class="ancho2">'.$cadenaTituloEtc.'</td><td class="alineado-derecha"> P-'.$numPresupuesto.'</td><td class="margen-lateral"></td></tr>';
 				echo '<tr class="datosCliente2"><td class="margen-lateral"></td><td colspan="2"></td><td class="margen-lateral"></td></tr>
 				<tr class="datosCliente3"><td class="margen-lateral"></td><td colspan="2"></td><td class="margen-lateral"></td></tr></table>
 				<table class="tabla-factura">';

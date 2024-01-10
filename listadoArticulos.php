@@ -13,7 +13,7 @@
 		
 		$query = "SELECT Referencia, Nombre, Precio, Coste, IdProveedor, Unidades FROM articulo ORDER BY Referencia ASC";
 		$stmt = $dbh->query($query);	
-		
+		 
 		listaArt($stmt);
 	}
 	catch(PDOException $e ) {
