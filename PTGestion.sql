@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generaciï¿½n: 09-02-2009 a las 13:48:18
--- Versiï¿½n del servidor: 5.0.67
--- Versiï¿½n de PHP: 5.2.6
+-- Tiempo de generacion: 09-02-2009 a las 13:48:18
+-- Version del servidor: 5.0.67
+-- Version de PHP: 5.2.6
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 
@@ -70,7 +70,7 @@ CREATE TABLE IF NOT EXISTS cliente (
   NIF varchar(9) default NULL,
   Nombre text collate utf8_unicode_ci NOT NULL,
   Apellidos text collate utf8_unicode_ci NOT NULL,
-  Titulo enum('Sr. D.','Sra. Dï¿½.','Sres. de') collate utf8_unicode_ci NOT NULL,
+  Titulo enum('Sr. D.','Sra. Dª.','Sres. de') collate utf8_unicode_ci NOT NULL,
   Observaciones text collate utf8_unicode_ci,
   Direccion text collate utf8_unicode_ci,
   CP int(5) default NULL,
@@ -301,7 +301,7 @@ CREATE TABLE IF NOT EXISTS venta (
   IdVenta int(11) NOT NULL auto_increment,
   FechaVenta date NOT NULL,
   FechaCobro date default NULL,
-  FormaPago enum('Visa','Efectivo','Transferencia','Talï¿½n') collate utf8_unicode_ci default NULL,
+  FormaPago enum('Visa','Efectivo','Transferencia','Talón') collate utf8_unicode_ci default NULL,
   Observaciones text collate utf8_unicode_ci,
   IdCliente int(11) default NULL,
   Antiguedad enum('Si','No') collate utf8_unicode_ci NOT NULL,
