@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 09-02-2009 a las 13:48:18
--- Versión del servidor: 5.0.67
--- Versión de PHP: 5.2.6
+-- Tiempo de generacion: 09-02-2009 a las 13:48:18
+-- Version del servidor: 5.0.67
+-- Version de PHP: 5.2.6
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 
@@ -321,18 +321,6 @@ ALTER TABLE `articulo`
   ADD CONSTRAINT articulo_ibfk_1 FOREIGN KEY (IdProveedor) REFERENCES proveedor (IdProveedor) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `factura`
---
-ALTER TABLE `factura`
-  ADD CONSTRAINT factura_ibfk_1 FOREIGN KEY (IdVenta) REFERENCES venta (IdVenta) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `facturaant`
---
-ALTER TABLE `facturaant`
-  ADD CONSTRAINT facturaant_ibfk_1 FOREIGN KEY (IdVenta) REFERENCES venta (IdVenta) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
 -- Filtros para la tabla `lineacompra`
 --
 ALTER TABLE `lineacompra`
@@ -376,13 +364,12 @@ ALTER TABLE `presupuesto`
   ADD CONSTRAINT `presupuesto_ibfk_1` FOREIGN KEY (`IdCliente`) REFERENCES `cliente` (`IdCliente`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `ticket`
---
-ALTER TABLE `ticket`
-  ADD CONSTRAINT ticket_ibfk_1 FOREIGN KEY (IdVenta) REFERENCES venta (IdVenta) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
 -- Filtros para la tabla `venta`
 --
 ALTER TABLE `venta`
   ADD CONSTRAINT venta_ibfk_1 FOREIGN KEY (IdCliente) REFERENCES cliente (IdCliente) ON DELETE NO ACTION ON UPDATE CASCADE;
+
+--
+-- Nueva columna para la tabla ticket
+--
+ALTER TABLE `ticket` ADD COLUMN AnoTicket INT;
