@@ -775,8 +775,8 @@ function calculaNumeroTicket ($idVenta){
 			// Para tickets previos a 2024, seguir numeración correlativa (Solicitado por Blanca)
 			return $idTicket;
 		} else {
-			// A partir de 2024 crear tickets con numeración que resetea por aÔø?o
-			$stmtNumTicket = $dbh->query("SELECT IdTicket FROM ticket where IdVenta in (SELECT IdVenta from venta where YEAR(FechaVenta) in ($anoVenta)) ORDER BY IdTicket ASC");
+			// A partir de 2024 crear tickets con numeración que resetea por ano
+			$stmtNumTicket = $dbh->query("SELECT IdTicket FROM ticket where AnoTicket = $anoVenta ORDER BY IdTicket ASC");
 			
 			$numTicket = 1;
 			foreach ($stmtNumTicket as $row){

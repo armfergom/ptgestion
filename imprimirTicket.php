@@ -17,7 +17,10 @@
 		$stmt0 = $dbh -> query($sql);
 	
 		if (($stmt0 -> rowcount()) == 0){
-			$sql2="INSERT INTO ticket (IdVenta) VALUES ($venta)";
+			$stmt = $dbh -> query("SELECT YEAR(FechaVenta) as AnoVenta FROM venta WHERE IdVenta=$venta");
+			$row = $stmt -> fetch();
+			$anoVenta = $row['AnoVenta'];
+			$sql2="INSERT INTO ticket (IdVenta, AnoTicket) VALUES ($venta, $anoVenta)";
 			$dbh -> exec($sql2);
 			$ticketId= $dbh -> lastInsertId();
 		}

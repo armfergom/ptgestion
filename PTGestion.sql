@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 09-02-2009 a las 13:48:18
--- Versión del servidor: 5.0.67
--- Versión de PHP: 5.2.6
+-- Tiempo de generaciï¿½n: 09-02-2009 a las 13:48:18
+-- Versiï¿½n del servidor: 5.0.67
+-- Versiï¿½n de PHP: 5.2.6
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 
@@ -70,7 +70,7 @@ CREATE TABLE IF NOT EXISTS cliente (
   NIF varchar(9) default NULL,
   Nombre text collate utf8_unicode_ci NOT NULL,
   Apellidos text collate utf8_unicode_ci NOT NULL,
-  Titulo enum('Sr. D.','Sra. Dª.','Sres. de') collate utf8_unicode_ci NOT NULL,
+  Titulo enum('Sr. D.','Sra. Dï¿½.','Sres. de') collate utf8_unicode_ci NOT NULL,
   Observaciones text collate utf8_unicode_ci,
   Direccion text collate utf8_unicode_ci,
   CP int(5) default NULL,
@@ -301,7 +301,7 @@ CREATE TABLE IF NOT EXISTS venta (
   IdVenta int(11) NOT NULL auto_increment,
   FechaVenta date NOT NULL,
   FechaCobro date default NULL,
-  FormaPago enum('Visa','Efectivo','Transferencia','Talón') collate utf8_unicode_ci default NULL,
+  FormaPago enum('Visa','Efectivo','Transferencia','Talï¿½n') collate utf8_unicode_ci default NULL,
   Observaciones text collate utf8_unicode_ci,
   IdCliente int(11) default NULL,
   Antiguedad enum('Si','No') collate utf8_unicode_ci NOT NULL,
@@ -319,18 +319,6 @@ CREATE TABLE IF NOT EXISTS venta (
 --
 ALTER TABLE `articulo`
   ADD CONSTRAINT articulo_ibfk_1 FOREIGN KEY (IdProveedor) REFERENCES proveedor (IdProveedor) ON DELETE NO ACTION ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `factura`
---
-ALTER TABLE `factura`
-  ADD CONSTRAINT factura_ibfk_1 FOREIGN KEY (IdVenta) REFERENCES venta (IdVenta) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `facturaant`
---
-ALTER TABLE `facturaant`
-  ADD CONSTRAINT facturaant_ibfk_1 FOREIGN KEY (IdVenta) REFERENCES venta (IdVenta) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `lineacompra`
@@ -376,13 +364,12 @@ ALTER TABLE `presupuesto`
   ADD CONSTRAINT `presupuesto_ibfk_1` FOREIGN KEY (`IdCliente`) REFERENCES `cliente` (`IdCliente`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `ticket`
---
-ALTER TABLE `ticket`
-  ADD CONSTRAINT ticket_ibfk_1 FOREIGN KEY (IdVenta) REFERENCES venta (IdVenta) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
 -- Filtros para la tabla `venta`
 --
 ALTER TABLE `venta`
   ADD CONSTRAINT venta_ibfk_1 FOREIGN KEY (IdCliente) REFERENCES cliente (IdCliente) ON DELETE NO ACTION ON UPDATE CASCADE;
+
+--
+-- Nueva columna para la tabla ticket
+--
+ALTER TABLE `ticket` ADD COLUMN AnoTicket INT;
