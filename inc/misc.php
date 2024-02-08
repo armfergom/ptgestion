@@ -646,7 +646,7 @@ function calculaNumeroPresupuesto ($IdPresupuesto, $fecha){
 
 	$anoPresupuesto = substr($fecha,0,4);
 
-	$query2 = "SELECT IdPresupuesto FROM presupuesto WHERE YEAR(Fecha) in ($anoPresupuesto) ORDER BY IdPresupuesto ASC";
+	$query2 = "SELECT IdPresupuesto FROM numeropresupuesto WHERE AnoPresupuesto = $anoPresupuesto ORDER BY IdPresupuesto ASC";
 	$stmt = $dbh->query($query2);
 
 	$numPresupuesto = 1;
@@ -722,7 +722,7 @@ function calculaNumeroFacturaAntiguedad ($IdVenta, $fecha){
 			// La factura no se ha emitido
 			return "--";
 		}
-		
+
 		$factura = $stmtFactura -> fetch();
 		$IdFactura = $factura['IdFactura'];
 		

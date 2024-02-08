@@ -70,7 +70,7 @@ CREATE TABLE IF NOT EXISTS cliente (
   NIF varchar(9) default NULL,
   Nombre text collate utf8_unicode_ci NOT NULL,
   Apellidos text collate utf8_unicode_ci NOT NULL,
-  Titulo enum('Sr. D.','Sra. Dª.','Sres. de') collate utf8_unicode_ci NOT NULL,
+  Titulo enum('Sr. D.','Sra. Dï¿½.','Sres. de') collate utf8_unicode_ci NOT NULL,
   Observaciones text collate utf8_unicode_ci,
   Direccion text collate utf8_unicode_ci,
   CP int(5) default NULL,
@@ -293,6 +293,21 @@ CREATE TABLE IF NOT EXISTS ticket (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla 'ticket'
+--
+
+DROP TABLE IF EXISTS numeropresupuesto;
+CREATE TABLE IF NOT EXISTS numeropresupuesto (
+  NumeroPresupuesto int(11) NOT NULL,
+  IdPresupuesto int(11) NOT NULL,
+  AnoPresupuesto int(11) NOT NULL,
+  PRIMARY KEY  (NumeroPresupuesto),
+  UNIQUE KEY IdPresupuesto (IdPresupuesto)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla 'venta'
 --
 
@@ -301,7 +316,7 @@ CREATE TABLE IF NOT EXISTS venta (
   IdVenta int(11) NOT NULL auto_increment,
   FechaVenta date NOT NULL,
   FechaCobro date default NULL,
-  FormaPago enum('Visa','Efectivo','Transferencia','Talón') collate utf8_unicode_ci default NULL,
+  FormaPago enum('Visa','Efectivo','Transferencia','Talï¿½n') collate utf8_unicode_ci default NULL,
   Observaciones text collate utf8_unicode_ci,
   IdCliente int(11) default NULL,
   Antiguedad enum('Si','No') collate utf8_unicode_ci NOT NULL,
