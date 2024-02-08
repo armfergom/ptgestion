@@ -70,7 +70,7 @@ CREATE TABLE IF NOT EXISTS cliente (
   NIF varchar(9) default NULL,
   Nombre text collate utf8_unicode_ci NOT NULL,
   Apellidos text collate utf8_unicode_ci NOT NULL,
-  Titulo enum('Sr. D.','Sra. Dï¿½.','Sres. de') collate utf8_unicode_ci NOT NULL,
+  Titulo enum('Sr. D.','Sra. Dª.','Sres. de') collate utf8_unicode_ci NOT NULL,
   Observaciones text collate utf8_unicode_ci,
   Direccion text collate utf8_unicode_ci,
   CP int(5) default NULL,
