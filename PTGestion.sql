@@ -316,7 +316,7 @@ CREATE TABLE IF NOT EXISTS venta (
   IdVenta int(11) NOT NULL auto_increment,
   FechaVenta date NOT NULL,
   FechaCobro date default NULL,
-  FormaPago enum('Visa','Efectivo','Transferencia','Talï¿½n') collate utf8_unicode_ci default NULL,
+  FormaPago enum('Visa','Efectivo','Transferencia','Talón') collate utf8_unicode_ci default NULL,
   Observaciones text collate utf8_unicode_ci,
   IdCliente int(11) default NULL,
   Antiguedad enum('Si','No') collate utf8_unicode_ci NOT NULL,
