@@ -293,6 +293,21 @@ CREATE TABLE IF NOT EXISTS ticket (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla 'ticket'
+--
+
+DROP TABLE IF EXISTS numeropresupuesto;
+CREATE TABLE IF NOT EXISTS numeropresupuesto (
+  NumeroPresupuesto int(11) NOT NULL,
+  IdPresupuesto int(11) NOT NULL,
+  AnoPresupuesto int(11) NOT NULL,
+  PRIMARY KEY  (NumeroPresupuesto),
+  UNIQUE KEY IdPresupuesto (IdPresupuesto)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla 'venta'
 --
 

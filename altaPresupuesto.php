@@ -271,6 +271,10 @@
 						$IdPresupuesto = $_REQUEST['presupuesto'];
 					else
 						$IdPresupuesto = $dbh->lastInsertId();
+
+					$sql = "INSERT INTO numeropresupuesto (NumeroPresupuesto, IdPresupuesto, AnoPresupuesto) VALUES ($IdPresupuesto, $IdPresupuesto, YEAR(curdate()))";
+					$dbh->exec($sql);
+
 					$i = 1;
 					$errores = '';
 					
