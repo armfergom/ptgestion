@@ -664,10 +664,12 @@ function calculaNumeroFactura ($IdVenta, $fecha){
 		
 		$queryFactura = "SELECT IdFactura FROM factura WHERE IdVenta = $IdVenta";
 		$stmtFactura = $dbh -> query($queryFactura);
+		if ($stmtFactura->rowCount() == 0) {
+			// La factura no se ha emitido
+			return "--";
+		}
 		$factura = $stmtFactura -> fetch();
-		
 		$IdFactura = $factura['IdFactura'];
-		
 		
 		$anoVenta = substr($fecha,0,4);
 		
@@ -716,8 +718,12 @@ function calculaNumeroFacturaAntiguedad ($IdVenta, $fecha){
 		
 		$queryFactura = "SELECT IdFactura FROM facturaant WHERE IdVenta = $IdVenta";
 		$stmtFactura = $dbh -> query($queryFactura);
-		$factura = $stmtFactura -> fetch();
+		if ($stmtFactura->rowCount() == 0) {
+			// La factura no se ha emitido
+			return "--";
+		}
 		
+		$factura = $stmtFactura -> fetch();
 		$IdFactura = $factura['IdFactura'];
 		
 		$anoVenta = substr($fecha,0,4);
